@@ -12,7 +12,7 @@ class App extends Component {
   };
 
   getCurrentUser = () => {
-    return 
+    return
   }
 
   render() {
