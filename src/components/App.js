@@ -11,8 +11,16 @@ class App extends Component {
     loading: true
   };
 
-  getCurrentUser = () => {
-    return
+  getCurrentUser = async () => {
+    const user = await User.current()
+    try {
+      if (user.id) {
+        this.setState({ currentUser: user });
+      };
+      this.setState({ loading: false });
+    } catch (error) {
+      this.setState({ loading: false });
+    }
   }
 
   render() {
