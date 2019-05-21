@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom';
-import { Menu, Segment } from 'semantic-ui-react'
-import logo from '../assets/images/logo.jpeg'
+import { Menu, Segment, Icon } from 'semantic-ui-react'
+import logo from '../assets/images/logo.PNG'
 
 export class NavBar extends Component {
   state = { activeItem: 'home' }
@@ -32,17 +32,26 @@ export class NavBar extends Component {
             />
             <Menu.Menu position='right'>
               <Menu.Item
+                name='Sign Up'
+                header as={NavLink} exact to="/sign-up"
+                active={activeItem === 'Sign Up'}
+                onClick={this.handleItemClick}
+              />
+              <Menu.Item
                 name='Sign In'
                 header as={NavLink} exact to="/sign-in"
                 active={activeItem === 'Sign In'}
                 onClick={this.handleItemClick}
               />
               <Menu.Item
-                name='Sign Up'
-                header as={NavLink} exact to="/sign-up"
-                active={activeItem === 'Sign Up'}
+                name='shopping basket'
+                header as={NavLink} exact to="/cart"
+                active={activeItem === 'shopping basket'}
                 onClick={this.handleItemClick}
-              />
+              >
+                <Icon name='shopping basket' />
+                Shopping Cart
+              </Menu.Item>
             </Menu.Menu>
           </Menu>
         </Segment>
