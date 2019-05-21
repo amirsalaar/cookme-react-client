@@ -11,6 +11,10 @@ class App extends Component {
     loading: true
   };
 
+  componentDidMount() {
+    this.getCurrentUser();
+  };
+
   getCurrentUser = async () => {
     const user = await User.current()
     try {
@@ -24,6 +28,10 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return <div />;
+    }
+
     return (
       <BrowserRouter>
         <div>
