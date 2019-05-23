@@ -19,14 +19,20 @@ export default function SignUpPage(props) {
       </Tab.Pane>,
     },
   ]
+  const style = {
+    wrapper: {
+      margin: 'auto',
+      width: '80%'
+    }
+  }
 
   return (
-    <Grid>
-      <Grid.Row>
-        <Container>
-          <Tab panes={panes} />
-        </Container>
-      </Grid.Row>
-    </Grid>
+      <Grid style={style.wrapper}>
+        <Grid.Row>
+          <Container>
+            <Tab panes={panes} />
+          </Container>
+        </Grid.Row>
+      </Grid>
   )
 }
