@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu, Segment, Icon, Sticky } from 'semantic-ui-react'
 import logo from '../assets/images/logo.PNG'
 
@@ -13,20 +13,23 @@ export class NavBar extends Component {
     return (
       <nav>
         <Sticky>
-          <Segment inverted>
-            <Menu inverted secondary stackable>
-              <Menu.Item style={{height: 50, }}>
-                <img src={logo} alt="Logo" style={{width: 70}} />
-                <Menu.Item style={{fontSize: 20, marginLeft: -10, fontWeight: 700}}>Cook Me</Menu.Item>
-                
+          <Segment>
+            <Menu stackable>
+              <Menu.Item
+                style={{ height: 50, }}
+                header as={Link} exact to="/"
+                onClick={() => { this.setState({ activeItem: '' }) }}
+              >
+                <img src={logo} alt="Logo" style={{ width: 80 }} />
+                <div style={{ fontSize: 20, marginLeft: 0, fontWeight: 700 }}>Cook Me</div>
               </Menu.Item>
 
-              <Menu.Item
+              {/* <Menu.Item
                 name='home'
                 header as={NavLink} exact to="/"
                 active={activeItem === 'home'}
                 onClick={this.handleItemClick}
-              />
+              /> */}
               <Menu.Item
                 name='foods'
                 header as={NavLink} exact to="/foods"
