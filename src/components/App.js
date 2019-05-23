@@ -4,6 +4,7 @@ import HomePage from './HomePage';
 import { NavBar } from './NavBar';
 import SignUpPage from './SignUpPage';
 import { User } from '../api/user';
+import SignInPage from './SignInPage';
 
 class App extends Component {
   state = {
@@ -43,6 +44,7 @@ class App extends Component {
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUp={this.getCurrentUser} />
             )} />
+            <Route exact path="/sign-in" component={SignInPage} />            
           </Switch>
         </div>
       </BrowserRouter>
