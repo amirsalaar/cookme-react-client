@@ -26,7 +26,11 @@ class App extends Component {
     } catch (error) {
       this.setState({ loading: false });
     }
-  }
+  };
+
+  signOut = () => {
+    this.setState({ currentUser: null })
+  };
 
   render() {
     if (this.state.loading) {
@@ -37,14 +41,16 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <header>
-            <NavBar />
+            <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} />
           </header>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUp={this.getCurrentUser} />
             )} />
-            <Route exact path="/sign-in" component={SignInPage} />            
+            <Route exact path="/sign-in" render={(routeProps) => (
+              <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />
+            )} />
           </Switch>
         </div>
       </BrowserRouter>

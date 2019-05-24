@@ -1,11 +1,28 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; 
+import { NavLink } from 'react-router-dom';
 import { Form, Grid, Input, Icon, Button, Segment, Message } from 'semantic-ui-react';
+import Session from '../api/session';
 
 export default function SignInPage(props) {
+  const { onSignIn } = props;
+
   const handleSubmit = (event) => {
     event.preventDefault();
-  }
+    const { currentTarget } = event;
+    const fD = new FormData(currentTarget);
+    const signInParams = {
+      email: fD.get('email'),
+      password: fD.get('password'),
+    };
+    Session.create(signInParams)
+      .then(res => {
+        if (res.id) {
+          onSignIn();
+          props.history.push('/foods')
+        }
+      });
+  };
+
   const style = {
     page: {
       margin: 'auto',
@@ -28,7 +45,7 @@ export default function SignInPage(props) {
                 </Input>
               </Form.Field>
               <Form.Field required >
-                <Input type='password' name='email' iconPosition='left' placeholder='Password'  >
+                <Input type='password' name='password' iconPosition='left' placeholder='Password'  >
                   <Icon name='lock' />
                   <input />
                 </Input>
