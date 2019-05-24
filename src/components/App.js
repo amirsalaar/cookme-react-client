@@ -17,8 +17,8 @@ class App extends Component {
   };
 
   getCurrentUser = async () => {
-    const user = await User.current()
     try {
+      const user = await User.current()
       if (user.id) {
         this.setState({ currentUser: user });
       };

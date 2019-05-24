@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, Segment, Icon, Sticky, Header, Image } from 'semantic-ui-react'
+import { Menu, Segment, Icon, Sticky, Header, Image, Dropdown } from 'semantic-ui-react'
 import logo from '../assets/images/logo.PNG'
 import Session from '../api/session';
+import DashbordMenuItem from './DashbordMenuItem';
 
 export class NavBar extends Component {
   state = {
@@ -18,6 +19,7 @@ export class NavBar extends Component {
       Session.destroy()
         .then(() => {
           onSignOut();
+          this.setState({activeItem: ''})
         })
     };
 
@@ -69,8 +71,10 @@ export class NavBar extends Component {
                       </Header>
                     </Menu.Item>
 
-                    <Menu.Item onClick={handleSignOut}>
-                      <Icon circular size='' name='sign out' className='Change' />
+                    <DashbordMenuItem currentUser={currentUser} />
+
+                    <Menu.Item as={Link} to='/' onClick={handleSignOut} >
+                      <Icon circular name='sign out' className='Change' />
                     </Menu.Item>
                   </React.Fragment>
                 ) : (
@@ -81,7 +85,7 @@ export class NavBar extends Component {
                         active={activeItem === 'Sign Up'}
                         onClick={this.handleItemClick}
                       />
-                      
+
                       <Menu.Item
                         name='Sign In'
                         header as={NavLink} exact to="/sign-in"
