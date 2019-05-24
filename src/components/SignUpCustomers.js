@@ -5,6 +5,7 @@ import { SignUpPagesStyles as style } from '../styles/SignUpPagesStyle';
 
 export default function SignUpCustomers(props) {
   const { onSignUp } = props;
+
   function handleSubmit(event) {
     event.preventDefault();
     const { currentTarget } = event;
@@ -20,7 +21,6 @@ export default function SignUpCustomers(props) {
     User.create(signUpParams).then(res => {
       if (res.id) {
         onSignUp();
-        props.history.push('/')
       }
     });
   };
@@ -29,7 +29,7 @@ export default function SignUpCustomers(props) {
     <Form onSubmit={handleSubmit}>
       <Form.Group widths='equal'>
         <Form.Field name='first_name' control={Input} label='First Name' placeholder='First Name' size={style.inputSize} required />
-        <Form.Field control={Input} label='Last Name' placeholder='Last Name' size={style.inputSize} required />
+        <Form.Field name='last_name' control={Input} label='Last Name' placeholder='Last Name' size={style.inputSize} required />
       </Form.Group>
 
       <Form.Group widths='equal'>
@@ -45,7 +45,7 @@ export default function SignUpCustomers(props) {
 
         <Form.Field name='password_confirmation' label='Password Confirmation' control={Input} width={7} type='password' placeholder='Password Confrimation' size={style.inputSize} required />
       </Form.Group>
-      <div style={{ marginBottom: 10 }}>
+      {/* <div style={{ marginBottom: 10 }}>
         <Label
           as="label"
           basic
@@ -65,7 +65,7 @@ export default function SignUpCustomers(props) {
           />
           <input name='user[avatar]' hidden id="upload" type="file" />
         </Label>
-      </div>
+      </div> */}
       <Button color='teal' type='submit' size={style.inputSize} >Sign Up</Button>
     </Form>
   )

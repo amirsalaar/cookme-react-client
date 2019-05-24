@@ -46,7 +46,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/sign-up" render={routeProps => (
-              <SignUpPage {...routeProps} onSignUp={this.getCurrentUser} />
+              <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
             )} />
             <Route exact path="/sign-in" render={(routeProps) => (
               <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />

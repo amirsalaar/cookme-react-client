@@ -14,23 +14,22 @@ export default function SignUpCooks(props) {
       first_name: formData.get('first_name'),
       last_name: formData.get('last_name'),
       email: formData.get('email'),
-      role: 2,
+      role: 1,
       password: formData.get('password'),
       password_confirmation: formData.get('password_confirmation'),
     };
-    User.create(signUpParams).then(res => {
-      if (res.id) {
-        onSignUp();
-        props.history.push('/')
-      }
-    });
+      User.create(signUpParams).then(res => {
+        if (res.id) {
+          onSignUp();
+        }
+      });
   };
 
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group widths='equal'>
         <Form.Field name='first_name' control={Input} label='First Name' placeholder='First Name' size={style.inputSize} required />
-        <Form.Field control={Input} label='Last Name' placeholder='Last Name' size={style.inputSize} required />
+        <Form.Field name='last_name' control={Input} label='Last Name' placeholder='Last Name' size={style.inputSize} required />
       </Form.Group>
 
       <label style={style.addressLabel}>Kitchen Address<span style={style.addressStar}>*</span> </label>
@@ -55,12 +54,12 @@ export default function SignUpCooks(props) {
         <Form.Field name='password_confirmation' label='Password Confirmation' control={Input} width={7} type='password' placeholder='Password Confrimation' size={style.inputSize} required />
       </Form.Group>
 
-      <label style={style.addressLabel}>Upload your cooking certificate</label>
+      {/* <label style={style.addressLabel}>Upload your cooking certificate</label>
       <div style={{ marginBottom: 10 }}>
         <Label
           as="label"
           basic
-          htmlFor="upload"
+          htmlFor="upload-certificate"
           style={{
             border: 'none',
             padding: 0
@@ -74,7 +73,7 @@ export default function SignUpCooks(props) {
             }}
             labelPosition="right"
           />
-          <input name='user[certificate]' hidden id="upload" type="file" />
+          <input name='user[certificate]' hidden id="upload-certificate" type="file" />
         </Label>
       </div>
 
@@ -83,7 +82,7 @@ export default function SignUpCooks(props) {
         <Label
           as="label"
           basic
-          htmlFor="upload"
+          htmlFor="upload-avatar"
           style={{
             border: 'none',
             padding: 0
@@ -97,9 +96,9 @@ export default function SignUpCooks(props) {
             }}
             labelPosition="right"
           />
-          <input name='user[avatar]' hidden id="upload" type="file" />
+          <input name='user[avatar]' hidden id="upload-avatar" type="file" />
         </Label>
-      </div>
+      </div> */}
 
 
       <Button color='teal' type='submit' size={style.inputSize} >Sign Up</Button>

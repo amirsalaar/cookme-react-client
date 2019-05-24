@@ -17,5 +17,13 @@ export const User = {
       body: JSON.stringify({ user: params })
     })
     return await res.json();
+  },
+  async upload(file) {
+    const res = await fetch(`${BASE_URL}/users/current`, {
+      method: "PATCH",
+      credentials: "include",
+      body: file
+    })
+    return await res.json();
   }
 }
