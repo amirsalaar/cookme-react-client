@@ -15,11 +15,14 @@ export class NavBar extends Component {
   render() {
     const { currentUser, onSignOut } = this.props;
 
+    const avatarUrl =
+      currentUser && currentUser.avatar ? currentUser.avatar.url : undefined;
+
     const handleSignOut = () => {
       Session.destroy()
         .then(() => {
           onSignOut();
-          this.setState({activeItem: ''})
+          this.setState({ activeItem: '' })
         })
     };
 
@@ -67,7 +70,7 @@ export class NavBar extends Component {
 
                     <Menu.Item>
                       <Header as='h6'>
-                        <Image circular src='https://react.semantic-ui.com/images/avatar/large/patrick.png' /> Patrick
+                        <Image circular src={avatarUrl} /> <span style={{ marginLeft: 5, fontSize: 14, verticalAlign: 'middle' }}>{currentUser.full_name}</span>
                       </Header>
                     </Menu.Item>
 
