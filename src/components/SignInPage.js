@@ -4,6 +4,7 @@ import { Form, Grid, Input, Icon, Button, Segment, Message } from 'semantic-ui-r
 import Session from '../api/session';
 
 export default function SignInPage(props) {
+  document.body.className = ('sign-in-page')
   const { onSignIn } = props;
 
   const handleSubmit = (event) => {
@@ -24,28 +25,31 @@ export default function SignInPage(props) {
   };
 
   const style = {
+    inputSize: 'large',
     page: {
-      margin: 'auto',
-    },
-    wrapper: {
-      margin: 'auto',
-      width: '50%'
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      alignContent: 'center',
+      height: '100%',
+      position: 'relative',
+      flexWrap: 'wrap'
     }
   }
   return (
-    <main className='Page' >
-      <Grid stackable className='middle aligned center aligned' style={style.page} >
-        <Grid.Column style={style.wrapper} >
+    <Grid className='sign-in' stackable centered verticalAlign='middle'>
+      <Grid.Column stretched textAlign='center' mobile={16} tablet={8} computer={8} largeScreen={5} verticalAlign='middle' >
+        <Segment raised>
           <Segment secondary >
             <Form onSubmit={handleSubmit}>
               <Form.Field required >
-                <Input type='email' name='email' iconPosition='left' placeholder='E-mail Address'  >
+                <Input type='email' name='email' iconPosition='left' placeholder='E-mail Address' size={style.inputSize} >
                   <Icon name='user' />
                   <input />
                 </Input>
               </Form.Field>
               <Form.Field required >
-                <Input type='password' name='password' iconPosition='left' placeholder='Password'  >
+                <Input type='password' name='password' iconPosition='left' placeholder='Password' size={style.inputSize} >
                   <Icon name='lock' />
                   <input />
                 </Input>
@@ -53,13 +57,11 @@ export default function SignInPage(props) {
               <Button color='teal' type='submit' size={style.inputSize} className='fluid' >Login</Button>
             </Form>
           </Segment>
-
-          <Message>
+          <Message >
             New user? <NavLink to='/sign-up'>Register</NavLink>
           </Message>
-
-        </Grid.Column>
-      </Grid>
-    </main>
+        </Segment>
+      </Grid.Column>
+    </Grid>
   )
 }

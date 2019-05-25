@@ -1,10 +1,11 @@
 import React from 'react';
-import { Label, Menu, Tab, Grid, Container } from 'semantic-ui-react';
-import { User } from '../api/user';
+import { Tab, Grid, Container, Segment, GridColumn } from 'semantic-ui-react';
 import SignUpCooks from './SignUpCooks';
 import SignUpCustomers from './SignUpCustomers';
 
 export default function SignUpPage(props) {
+  document.body.classList = ('sign-up-page');
+
   const { onSignUpPage } = props;
 
   const handleSignUp = () => {
@@ -26,20 +27,16 @@ export default function SignUpPage(props) {
       </Tab.Pane>,
     },
   ]
-  const style = {
-    wrapper: {
-      margin: 'auto',
-      width: '60%'
-    }
-  }
 
   return (
-      <Grid style={style.wrapper}>
-        <Grid.Row>
-          <Container>
+    <Grid className='sign-up' stackable centered verticalAlign='middle'>
+      <Grid.Column stretched textAlign='center' mobile={16} tablet={11} computer={11} largeScreen={7} verticalAlign='middle'>
+        <Container>
+          <Segment raised>
             <Tab panes={panes} />
-          </Container>
-        </Grid.Row>
-      </Grid>
+          </Segment>
+        </Container>
+      </Grid.Column>
+    </Grid>
   )
 }

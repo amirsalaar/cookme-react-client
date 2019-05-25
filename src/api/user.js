@@ -7,23 +7,23 @@ export const User = {
     });
     return await res.json();
   },
-  async create(params) {
+  // async create(params) {
+  //   const res = await fetch(`${BASE_URL}/users`, {
+  //     method: "POST",
+  //     credentials: "include",
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({ user: params })
+  //   })
+  //   return await res.json();
+  // },
+  async create(formData) {
     const res = await fetch(`${BASE_URL}/users`, {
       method: "POST",
       credentials: "include",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ user: params })
+      body: formData
     })
     return await res.json();
   },
-  async upload(file) {
-    const res = await fetch(`${BASE_URL}/users/current`, {
-      method: "PATCH",
-      credentials: "include",
-      body: file
-    })
-    return await res.json();
-  }
 }
