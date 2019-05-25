@@ -5,6 +5,7 @@ import { NavBar } from './NavBar';
 import SignUpPage from './SignUpPage';
 import { User } from '../api/user';
 import SignInPage from './SignInPage';
+import FoodIndexPage from './FoodIndexPage';
 
 class App extends Component {
   state = {
@@ -45,6 +46,7 @@ class App extends Component {
           </header>
           <Switch>
             <Route exact path="/" component={HomePage} />
+            <Route exact path="/foods" component={FoodIndexPage} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
             )} />

@@ -14,17 +14,6 @@ export default function HomePage() {
           </Grid.Column>
         </Grid >
       </div>
-      <div>
-
-        {/* <Grid.Row>
-          <Grid.Column mobile={16} tablet={10} computer={16}>
-            <div className='page foods'>
-              <FoodIndexPage />
-            </div>
-          </Grid.Column>
-        </Grid.Row> */}
-
-      </div>
     </>
   )
 }

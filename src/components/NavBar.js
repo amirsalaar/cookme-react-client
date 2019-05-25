@@ -39,7 +39,7 @@ export class NavBar extends Component {
                 onClick={() => { this.setState({ activeItem: '' }) }}
               >
                 <img src={logo} alt="Logo" style={{ width: 80 }} />
-                <div style={{ fontSize: 20, marginLeft: 0, fontWeight: 700 }}>Cook Me</div>
+                <div style={{ fontSize: 20, marginLeft: 0, fontWeight: 700 }}>CookMe</div>
               </Menu.Item>
 
               {/* <Menu.Item
