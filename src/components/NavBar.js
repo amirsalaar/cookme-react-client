@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { Menu, Segment, Icon, Sticky, Header, Image, Dropdown } from 'semantic-ui-react'
 import logo from '../assets/images/logo.PNG'
 import Session from '../api/session';
-import DashbordMenuItem from './DashbordMenuItem';
+import DashboardMenuItem from './DashboardMenuItem';
 
 export class NavBar extends Component {
   state = {
@@ -74,7 +74,7 @@ export class NavBar extends Component {
                       </Header>
                     </Menu.Item>
 
-                    <DashbordMenuItem currentUser={currentUser} />
+                    <DashboardMenuItem currentUser={currentUser} />
 
                     <Menu.Item as={Link} to='/' onClick={handleSignOut} >
                       <Icon circular name='sign out' className='Change' />

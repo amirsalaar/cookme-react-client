@@ -1,7 +1,7 @@
 import React from 'react'
-import { Menu, Image, Icon, Header, Dropdown } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 
-export default function DashbordMenuItem(props) {
+export default function DashboardMenuItem(props) {
   const { currentUser } = props;
 
   const menu = {
