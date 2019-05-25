@@ -11,10 +11,12 @@ export default class FoodIndexPage extends Component {
   componentDidMount() {
     Food.all().then(foods => {
       this.setState({ foods })
-      console.log(foods[0].pictures[0].url)
     });
   };
 
+  handleFoodItemClick = (event) => {
+    event.preventDefault();
+  }
   render() {
     document.body.classList = '';
     const { foods } = this.state;
@@ -29,13 +31,16 @@ export default class FoodIndexPage extends Component {
       <div style={{ padding: 10 }} >
         <Grid>
           {foods.map(food => (
-            <Grid.Column mobile={16} tablet={8} computer={4} >
+            <Grid.Column mobile={16} tablet={8} computer={4} key={food.id}>
               <FoodItem
                 image={food.pictures.length > 0 ? food.pictures[0].url : null}
                 header={food.name}
                 meta='km away'
                 description={food.description}
                 extra={extra(food.price)}
+                link
+                onClick={this.handleFoodItemClick}
+                foodId={food.id}
               />
             </Grid.Column>
           ))}

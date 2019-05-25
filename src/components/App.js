@@ -6,6 +6,7 @@ import SignUpPage from './SignUpPage';
 import { User } from '../api/user';
 import SignInPage from './SignInPage';
 import FoodIndexPage from './FoodIndexPage';
+import FoodShowPage from './FoodShowPage';
 
 class App extends Component {
   state = {
@@ -47,6 +48,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/foods" component={FoodIndexPage} />
+            <Route exact path="/foods/:id" component={FoodShowPage} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
             )} />
