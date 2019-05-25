@@ -4,28 +4,27 @@ import FoodIndexPage from './FoodIndexPage';
 
 
 export default function HomePage() {
-  document.body.className = ('home')
-  const style = {
-    searchInput: { width: '40%' },
-  }
+  document.body.className = ('home-page')
   return (
-    <Grid verticalAlign='middle' centered>
-      <Grid.Row>
-        <Grid.Column mobile={16} tablet={10} computer={16}>
-          <div className="page">
-          <Input size='huge' action={{ icon: 'search' }} placeholder='Search...' style={style.searchInput} />
-          </div>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-      <Grid.Column mobile={16} tablet={10} computer={16}>
-        <div className='page foods'>
-          <FoodIndexPage />
-        </div>
-        </Grid.Column>
+    <>
+      <div className="page">
+        < Grid className='home' verticalAlign='middle' centered >
+          <Grid.Column mobile={12} tablet={10} computer={8} largeScreen={6} stretched >
+            <Input size='huge' action={{ icon: 'search' }} placeholder='Nearby Kitchens...' />
+          </Grid.Column>
+        </Grid >
+      </div>
+      <div>
 
-      </Grid.Row>
+        {/* <Grid.Row>
+          <Grid.Column mobile={16} tablet={10} computer={16}>
+            <div className='page foods'>
+              <FoodIndexPage />
+            </div>
+          </Grid.Column>
+        </Grid.Row> */}
 
-    </Grid>
+      </div>
+    </>
   )
 }

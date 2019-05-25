@@ -39,10 +39,10 @@ header {
 }
 
 .home { 
-  min-height: 50vh; 
+  min-height: 90vh; 
 }
 
-.sign-in-page, .sign-up-page, .home {
+.sign-in-page, .sign-up-page, .home-page {
   background: url(../src/assets/images/hero-kitchen.jpg) no-repeat center
 }
 nav .ui.segment {background: transparent; box-shadow: none; border: none; }
