@@ -28,7 +28,7 @@ export default class FoodIndexPage extends Component {
     )
     return (
       // <main className='page'>
-      <div style={{ padding: 10 }} >
+      <div style={{ padding: 20 }} >
         <Grid>
           {foods.map(food => (
             <Grid.Column mobile={16} tablet={8} computer={4} key={food.id}>
