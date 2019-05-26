@@ -52,3 +52,22 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
 .page .foods {
   background: white;
 }
+
+.ui[class*="top fixed"].menu {
+  border-top: initial !important;
+  border-left: initial !important;
+  border-right: initial !important;
+}
+
+.ui.fixed.menu, .ui[class*="top fixed"].menu {
+  top: 1em !important;
+  left: 0.25em !important;
+  right: auto ;
+  bottom: auto;
+}
+/* .ui.menu.fixed, .ui.menu.fixed .item:first-child, .ui.menu.fixed .item:last-child {
+} */
+.ui.menu.fixed {
+  width: 98% !important;
+  border-radius: 0.28571429rem !important;
+}

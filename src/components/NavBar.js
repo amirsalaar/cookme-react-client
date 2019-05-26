@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, Segment, Icon, Sticky, Header, Image, Dropdown } from 'semantic-ui-react'
+import { Menu, Segment, Icon, Sticky, Header, Image, Button } from 'semantic-ui-react'
 import logo from '../assets/images/logo.PNG'
 import Session from '../api/session';
 import DashboardMenuItem from './DashboardMenuItem';
@@ -64,10 +64,16 @@ export class NavBar extends Component {
                       active={activeItem === 'shopping basket'}
                       onClick={this.handleItemClick}
                     >
-                      <Icon name='shopping basket' />
+                      <Icon name='cart' />
                       Shopping Cart
+                      {/* <Button animated='vertical'>
+                        <Button.Content hidden>Shop</Button.Content>
+                        <Button.Content visible>
+                          <Icon name='shop' />
+                        </Button.Content>
+                      </Button> */}
                     </Menu.Item>
-
+                    
                     <Menu.Item>
                       <Header as='h6'>
                         <Image circular src={avatarUrl} /> <span style={{ marginLeft: 5, fontSize: 14, verticalAlign: 'middle' }}>{currentUser.full_name}</span>
