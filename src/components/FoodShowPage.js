@@ -6,17 +6,18 @@ const classes = {
   foodImageGrid: { padding: 50, },
   container: { width: '85%', },
   descriptionCard: { minHeight: 200, },
-  shoppingButtunRow: {paddingTop: 0},
+  shoppingButtunRow: { paddingTop: 0 },
   shoopingCard: { border: 'none', boxShadow: 'none' },
   quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
-  quantityRow: {paddingBottom: 10},
+  quantityRow: { paddingBottom: 10 },
 
 }
 
 export default class FoodShowPage extends Component {
   state = {
     food: null,
-    loading: true
+    loading: true,
+    quantity: 0,
   };
 
   componentDidMount = () => {
@@ -28,6 +29,13 @@ export default class FoodShowPage extends Component {
     Food.one(id)
       .then(food => this.setState({ food, loading: false }))
       .catch(err => this.setState({ loading: false }));
+  };
+
+  handleQuantity = (value) => {
+    if (value === 'decrement') {
+      return this.setState({ quantity: this.state.quantity === 0 ? 0 : this.state.quantity - 1 });
+    };
+    return this.setState({ quantity: this.state.quantity + 1 });
   };
 
   render() {
@@ -63,19 +71,19 @@ export default class FoodShowPage extends Component {
                     <Card.Content description={food.description} style={classes.descriptionCard} />
                     <Card.Content>
                       <Grid columns='equal' centered stackable>
-                        
+
                         <Grid.Row style={classes.quantityRow}>
                           <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto', textAlign: 'center' }}>
                             <Button.Group fluid icon basic size='large'>
-                              <Button >
+                              <Button onClick={() => this.handleQuantity('decrement')}>
                                 <Icon name='minus' />
                               </Button>
                               <Button>
-                                <Input type='text' value={0} transparent size='small' style={classes.quantityInput}>
+                                <Input type='text' value={this.state.quantity} transparent size='small' style={classes.quantityInput}>
                                   <input style={{ textAlign: 'center' }} />
                                 </Input>
                               </Button>
-                              <Button>
+                              <Button onClick={(add = 'increment') => this.handleQuantity(add)}>
                                 <Icon name='add' />
                               </Button>
                             </Button.Group>
