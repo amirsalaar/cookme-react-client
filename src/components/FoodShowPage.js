@@ -42,10 +42,11 @@ export default class FoodShowPage extends Component {
     if (this.state.quantity === 0) {
       this.setState({ quantity: 1 });
     };
-
+    
     const order = {
       food: this.state.food,
       quantity: this.state.quantity,
+      cartCount:  this.props.cartCount,
     };
     this.props.onAddToCart(order);
   };

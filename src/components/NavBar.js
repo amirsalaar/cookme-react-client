@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, Segment, Icon, Sticky, Header, Image, Button } from 'semantic-ui-react'
+import { Menu, Segment, Icon, Sticky, Header, Image, Label } from 'semantic-ui-react'
 import logo from '../assets/images/logo.PNG'
 import Session from '../api/session';
 import DashboardMenuItem from './DashboardMenuItem';
@@ -9,7 +9,6 @@ export class NavBar extends Component {
   state = {
     activeItem: '',
   };
-
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
@@ -26,7 +25,8 @@ export class NavBar extends Component {
         })
     };
 
-    const { activeItem } = this.state;
+    const { activeItem, } = this.state;
+    const { cartCount } = this.props;
 
     return (
       <nav>
@@ -66,6 +66,10 @@ export class NavBar extends Component {
                     >
                       <Icon name='cart' />
                       Shopping Cart
+                      <Label size='tiny' basic color='teal'>
+                        {cartCount}
+                      </Label>
+
                       {/* <Button animated='vertical'>
                         <Button.Content hidden>Shop</Button.Content>
                         <Button.Content visible>
@@ -73,7 +77,7 @@ export class NavBar extends Component {
                         </Button.Content>
                       </Button> */}
                     </Menu.Item>
-                    
+
                     <Menu.Item>
                       <Header as='h6'>
                         <Image circular src={avatarUrl} /> <span style={{ marginLeft: 5, fontSize: 14, verticalAlign: 'middle' }}>{currentUser.full_name}</span>

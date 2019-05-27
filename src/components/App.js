@@ -42,19 +42,19 @@ class App extends Component {
   render() {
     if (this.state.loading) {
       return <div />;
-    }
+    };
 
     return (
       <BrowserRouter>
         <div>
           <header>
-            <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} />
+            <NavBar currentUser={this.state.currentUser} onSignOut={this.signOut} cartCount={this.state.cart.length} />
           </header>
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/foods" component={FoodIndexPage} />
             <Route exact path="/foods/:id" render={routeProps => (
-              <FoodShowPage {...routeProps} onAddToCart={params => this.addToCart(params)} />
+              <FoodShowPage {...routeProps} cartCount={this.state.cart.length} onAddToCart={params => this.addToCart(params)} />
             )} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
