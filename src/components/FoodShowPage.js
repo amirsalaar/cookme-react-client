@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { Grid, Image, Container, Card,Icon, Dimmer, Loader } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input } from 'semantic-ui-react';
 import Food from '../api/food';
 
 const classes = {
-  foodImageGrid: {
-    padding: 50,
-  },
-  container: {
-    width: '85%'
-  },
-  descriptionCard: {
-    minHeight: 200
-  }
+  foodImageGrid: { padding: 50, },
+  container: { width: '85%', },
+  descriptionCard: { minHeight: 200, },
+  shoppingButtunRow: {paddingTop: 0},
+  shoopingCard: { border: 'none', boxShadow: 'none' },
+  quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
+  quantityRow: {paddingBottom: 10},
+
 }
+
 export default class FoodShowPage extends Component {
   state = {
     food: null,
@@ -48,12 +48,12 @@ export default class FoodShowPage extends Component {
         <Grid stackable celled >
 
           <Grid.Column width={14}>
-            <Grid  stackable>
+            <Grid stackable>
               <Grid.Row >
 
                 <Grid.Column width={8} >
                   <Card fluid >
-                  <Image src={food.pictures.length > 0 ? food.pictures[0].url : null} />
+                    <Image src={food.pictures.length > 0 ? food.pictures[0].url : null} />
                   </Card>
                 </Grid.Column>
 
@@ -61,9 +61,43 @@ export default class FoodShowPage extends Component {
                   <Card fluid>
                     <Card.Content header={food.name} />
                     <Card.Content description={food.description} style={classes.descriptionCard} />
+                    <Card.Content>
+                      <Grid columns='equal' centered stackable>
+                        
+                        <Grid.Row style={classes.quantityRow}>
+                          <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto', textAlign: 'center' }}>
+                            <Button.Group fluid icon basic size='large'>
+                              <Button >
+                                <Icon name='minus' />
+                              </Button>
+                              <Button>
+                                <Input type='text' value={0} transparent size='small' style={classes.quantityInput}>
+                                  <input style={{ textAlign: 'center' }} />
+                                </Input>
+                              </Button>
+                              <Button>
+                                <Icon name='add' />
+                              </Button>
+                            </Button.Group>
+                          </Grid.Column>
+                        </Grid.Row>
+
+                        <Grid.Row style={classes.shoppingButtunRow}>
+                          <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto' }}>
+                            <Button fluid positive animated='vertical' style={classes.shoppingButtun} size='large' >
+                              <Button.Content hidden>Add to Cart</Button.Content>
+                              <Button.Content visible>
+                                <Icon name='add to cart' size='large' />
+                              </Button.Content>
+                            </Button>
+                          </Grid.Column>
+                        </Grid.Row>
+
+                      </Grid>
+                    </Card.Content>
                     <Card.Content extra>
-                      <Icon name='user' />
-                      4 Friends
+                      <Icon name='dollar' />
+                      {food.price}
                     </Card.Content>
                   </Card>
                 </Grid.Column>
@@ -74,7 +108,11 @@ export default class FoodShowPage extends Component {
 
           <Grid.Column width={2}>
             <Grid.Column width={2} >
-              <Image src='https://react.semantic-ui.com/images/wireframe/image.png' />
+              <Card centered style={classes.shoopingCard}>
+
+                <Button content='Checkout' icon='cart' labelPosition='left' color='teal' />
+
+              </Card>
             </Grid.Column>
           </Grid.Column>
 
@@ -83,7 +121,7 @@ export default class FoodShowPage extends Component {
               Cook
               </Grid.Column>
             <Grid.Column width={4} style={classes.foodImageGrid}>
-              contact cook
+              kitchen location, kitchen map
               </Grid.Column>
           </Grid.Row>
 
