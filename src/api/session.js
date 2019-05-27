@@ -18,7 +18,18 @@ const Session = {
       credentials: "include",
     });
     return await res.json();
-  }
+  },
+  async addToCart(params) {
+    const res = await fetch(`${BASE_URL}/session/add_to_cart`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify({ order_details: params })
+    });
+    return await res.json();
+  },
 }
 
 export default Session;

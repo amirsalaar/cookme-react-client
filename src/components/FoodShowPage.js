@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input } from 'semantic-ui-react';
-import Food from '../api/food';
 import CheckoutSidebar from './CheckoutSidebar';
+import Food from '../api/food';
+import Session from '../api/session';
+import { User } from '../api/user';
 
 const classes = {
   foodImageGrid: { padding: 50, },
@@ -24,7 +26,7 @@ export default class FoodShowPage extends Component {
   };
 
   componentDidMount = () => {
-    this.fetchFood();
+    this.fetchFood();    
   };
 
   fetchFood = () => {
@@ -49,7 +51,10 @@ export default class FoodShowPage extends Component {
       food: this.state.food,
       quantity: this.state.quantity,
     };
-    this.props.onAddToCart(order);
+    Session.addToCart(order)
+      .then((res) => {
+        this.props.onAddToCart(order)
+      });
   };
 
   render() {
@@ -114,7 +119,7 @@ export default class FoodShowPage extends Component {
                             </Button>
                           </Grid.Column>
                         </Grid.Row>
-
+                        
                       </Grid>
                     </Card.Content>
                     <Card.Content extra>
