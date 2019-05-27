@@ -21,15 +21,20 @@ class App extends Component {
 
   getCurrentUser = async () => {
     try {
-      const res = await User.current()
-      console.log(res)
-      if (res.user.id) {
-        this.setState({ currentUser: res.user, cart: res.cart });
+      const user = await User.current()
+      if (user.id) {
+        this.setState({ currentUser: user });
+      };
+      const cart = await User.cart(user.id);
+      if (cart) {
+        this.setState({ cart })
       };
       this.setState({ loading: false });
     } catch (error) {
       this.setState({ loading: false });
-    }
+    };
+
+
   };
 
   signOut = () => {

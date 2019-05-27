@@ -7,6 +7,12 @@ export const User = {
     });
     return await res.json();
   },
+  async cart(id) {
+    const res = await fetch(`${BASE_URL}/users/${id}/cart`, {
+      credentials: "include"
+    });
+    return await res.json();
+  },
   // async create(params) {
   //   const res = await fetch(`${BASE_URL}/users`, {
   //     method: "POST",
