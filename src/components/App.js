@@ -53,9 +53,11 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/foods" component={FoodIndexPage} />
-            <Route exact path="/foods/:id" render={routeProps => (
-              <FoodShowPage {...routeProps} cartCount={this.state.cart.length} onAddToCart={params => this.addToCart(params)} />
-            )} />
+            <Route
+              exact path="/foods/:id"
+              render={routeProps => (
+                <FoodShowPage {...routeProps} cartCount={this.state.cart.length} onAddToCart={params => this.addToCart(params)} cartDetails={this.state.cart} />
+              )} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
             )} />

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input } from 'semantic-ui-react';
 import Food from '../api/food';
+import CheckoutSidebar from './CheckoutSidebar';
 
 const classes = {
   foodImageGrid: { padding: 50, },
   container: { width: '85%', },
   descriptionCard: { minHeight: 200, },
+  imageCard: { minHeight: 200, },
   shoppingButtunRow: { paddingTop: 0 },
-  shoopingCard: { border: 'none', boxShadow: 'none' },
+  shoppingCard: { border: 'none', boxShadow: 'none' },
   quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
   quantityRow: { paddingBottom: 10 },
+  sidebarContainer: { paddingRight: 0, paddingLeft: 0 },
 
-}
+};
 
 export default class FoodShowPage extends Component {
   state = {
@@ -42,11 +45,9 @@ export default class FoodShowPage extends Component {
     if (this.state.quantity === 0) {
       this.setState({ quantity: 1 });
     };
-    
     const order = {
       food: this.state.food,
       quantity: this.state.quantity,
-      cartCount:  this.props.cartCount,
     };
     this.props.onAddToCart(order);
   };
@@ -66,14 +67,14 @@ export default class FoodShowPage extends Component {
 
     return (
       <Container style={classes.container} >
-        <Grid stackable celled >
+        <Grid stackable centered >
 
-          <Grid.Column width={14}>
+          <Grid.Column computer={13} tablet={12} >
             <Grid stackable>
               <Grid.Row >
 
                 <Grid.Column width={8} >
-                  <Card fluid >
+                  <Card fluid  >
                     <Image src={food.pictures.length > 0 ? food.pictures[0].url : null} />
                   </Card>
                 </Grid.Column>
@@ -127,14 +128,10 @@ export default class FoodShowPage extends Component {
             </Grid>
           </Grid.Column>
 
-          <Grid.Column width={2}>
-            <Grid.Column width={2} >
-              <Card centered style={classes.shoopingCard}>
-
-                <Button content='Checkout' icon='cart' labelPosition='left' color='teal' />
-
-              </Card>
-            </Grid.Column>
+          <Grid.Column computer={3} tablet={4} style={classes.sidebarContainer}>
+            <Grid.Row>
+              <CheckoutSidebar cartItems={this.props.cartDetails} />
+            </Grid.Row>
           </Grid.Column>
 
           <Grid.Row>

@@ -66,7 +66,7 @@ export class NavBar extends Component {
                     >
                       <Icon name='cart' />
                       Shopping Cart
-                      <Label size='tiny' basic color='teal'>
+                      <Label size='small' basic color='teal'>
                         {cartCount}
                       </Label>
 
