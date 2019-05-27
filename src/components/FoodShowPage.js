@@ -17,7 +17,7 @@ export default class FoodShowPage extends Component {
   state = {
     food: null,
     loading: true,
-    quantity: 0,
+    quantity: 1,
   };
 
   componentDidMount = () => {
@@ -36,6 +36,18 @@ export default class FoodShowPage extends Component {
       return this.setState({ quantity: this.state.quantity === 0 ? 0 : this.state.quantity - 1 });
     };
     return this.setState({ quantity: this.state.quantity + 1 });
+  };
+
+  handleAddToCart = () => {
+    if (this.state.quantity === 0) {
+      this.setState({ quantity: 1 });
+    };
+
+    const order = {
+      food: this.state.food,
+      quantity: this.state.quantity,
+    };
+    this.props.onAddToCart(order);
   };
 
   render() {
@@ -92,7 +104,7 @@ export default class FoodShowPage extends Component {
 
                         <Grid.Row style={classes.shoppingButtunRow}>
                           <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto' }}>
-                            <Button fluid positive animated='vertical' style={classes.shoppingButtun} size='large' >
+                            <Button fluid positive animated='vertical' style={classes.shoppingButtun} size='large' onClick={this.handleAddToCart}>
                               <Button.Content hidden>Add to Cart</Button.Content>
                               <Button.Content visible>
                                 <Icon name='add to cart' size='large' />

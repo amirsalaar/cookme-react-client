@@ -11,7 +11,8 @@ import FoodShowPage from './FoodShowPage';
 class App extends Component {
   state = {
     currentUser: null,
-    loading: true
+    loading: true,
+    cart: [],
   };
 
   componentDidMount() {
@@ -34,6 +35,10 @@ class App extends Component {
     this.setState({ currentUser: null })
   };
 
+  addToCart = (params) => {
+    this.setState({ cart: [...this.state.cart, params] });
+  };
+
   render() {
     if (this.state.loading) {
       return <div />;
@@ -48,7 +53,9 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/foods" component={FoodIndexPage} />
-            <Route exact path="/foods/:id" component={FoodShowPage} />
+            <Route exact path="/foods/:id" render={routeProps => (
+              <FoodShowPage {...routeProps} onAddToCart={params => this.addToCart(params)} />
+            )} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
             )} />
