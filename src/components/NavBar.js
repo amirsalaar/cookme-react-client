@@ -60,7 +60,7 @@ export class NavBar extends Component {
                   <React.Fragment>
                     <Menu.Item
                       name='shopping basket'
-                      header as={NavLink} exact to="/cart"
+                      header as={NavLink} exact to="/checkout"
                       active={activeItem === 'shopping basket'}
                       onClick={this.handleItemClick}
                     >
