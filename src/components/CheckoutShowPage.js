@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Grid, Container } from 'semantic-ui-react';
 
 export default class CheckoutShowPage extends Component {
   state = {
@@ -6,14 +7,18 @@ export default class CheckoutShowPage extends Component {
   };
 
   componentDidMount() {
-    this.setState({ cartItems: this.props.cartItems})
+    this.setState({ cartItems: this.props.Details })
   };
 
   render() {
     return (
-      <div>
-
-      </div>
+      <Container>
+        <Grid celled>
+          <Grid.Column>
+          
+          </Grid.Column>
+        </Grid>
+      </Container>
     )
   }
 }
