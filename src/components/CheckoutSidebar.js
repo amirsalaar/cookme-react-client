@@ -1,26 +1,38 @@
 import React, { Component } from 'react';
 import { Card, Button, Icon, List, Image, Grid } from 'semantic-ui-react';
+import Food from '../api/food';
 
 export default class CheckoutSidebar extends Component {
   state = {
-    subTotal: 0,
-    tax: 0,
-    total: 0,
+    order: [],
   };
 
   calculateTotalPrice = () => {
-    let subTotal = 0;
-    if (this.props.cartItems.length > 0) {
-      this.props.cartItems.forEach(cartItem => {
-        subTotal += cartItem.food.price * cartItem.quantity;
-      });
-      return this.setState({subTotal: 0, tax: subTotal * 0.12, total: this.state.subTotal + this.state.tax})
-    };
-    return this.state
+    // let subTotal = 0;
+    // if (this.props.cartItems.length > 0) {
+    //   this.props.cartItems.forEach(cartItem => {
+    //     subTotal += cartItem.food.price * cartItem.quantity;
+    //   });
+    //   return this.setState({ subTotal: 0, tax: subTotal * 0.12, total: this.state.subTotal + this.state.tax })
+    // };
+    // return this.state
   };
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.cartItems !== this.props.cartItems) {
+      this.setState({ order: nextProps.cartItems })
+    };
+  };
+
+  componentDidMount() {
+    this.setState({ order: this.props.cartItems });
+  };
+
+  onAddItemToCart = () => {
+
+  }
+
   render() {
-    const { cartItems } = this.props;
     const classes = {
       sidebarCardHeader: { fontSize: 15 },
       listQuantity: { marginRight: 5, marginLeft: 3, fontWeight: 'bold' },
@@ -28,15 +40,13 @@ export default class CheckoutSidebar extends Component {
       totalList: { fontSize: '0.8 em' },
     };
 
-
     return (
       <Card centered fluid>
         <Card.Content>
           <Card.Header style={classes.sidebarCardHeader}>Your order</Card.Header>
           <Card.Description>
             <List>
-              {cartItems.map((cartItem, index) => {
-                console.log(cartItem)
+              {this.state.order.map((cartItem, index) => {
                 return (
                   <List.Item key={index}>
                     <List.Content floated='left'>
@@ -81,7 +91,7 @@ export default class CheckoutSidebar extends Component {
           </Button.Content>
           <Button.Content visible>Checkout</Button.Content>
         </Button>
-      </Card>
+      </Card >
     )
   }
 }

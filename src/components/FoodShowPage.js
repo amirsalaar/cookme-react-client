@@ -23,10 +23,12 @@ export default class FoodShowPage extends Component {
     food: null,
     loading: true,
     quantity: 1,
+    cartDetails: [],
   };
 
   componentDidMount = () => {
-    this.fetchFood();    
+    this.fetchFood();
+    this.setState({ cartDetails: this.props.cartDetails })
   };
 
   fetchFood = () => {
@@ -48,18 +50,22 @@ export default class FoodShowPage extends Component {
       this.setState({ quantity: 1 });
     };
     const order = {
-      food: this.state.food,
+      foodId: this.state.food.id,
       quantity: this.state.quantity,
+    };
+    const cartDetail = {
+      food: this.state.food,
+      quantity: this.state.quantity
     };
     Session.addToCart(order)
       .then((res) => {
-        this.props.onAddToCart(order)
+        this.props.onAddToCart(order);
+        this.setState({ cartDetails: [...this.state.cartDetails, cartDetail] })
       });
   };
 
   render() {
     const { food, loading } = this.state;
-
     if (loading) {
       return (
         <Grid>
@@ -119,7 +125,7 @@ export default class FoodShowPage extends Component {
                             </Button>
                           </Grid.Column>
                         </Grid.Row>
-                        
+
                       </Grid>
                     </Card.Content>
                     <Card.Content extra>
@@ -135,7 +141,7 @@ export default class FoodShowPage extends Component {
 
           <Grid.Column computer={3} tablet={4} style={classes.sidebarContainer}>
             <Grid.Row>
-              <CheckoutSidebar cartItems={this.props.cartDetails} />
+              <CheckoutSidebar cartItems={this.state.cartDetails} />
             </Grid.Row>
           </Grid.Column>
 
