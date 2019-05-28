@@ -8,6 +8,8 @@ import SignInPage from './SignInPage';
 import FoodIndexPage from './FoodIndexPage';
 import FoodShowPage from './FoodShowPage';
 import Food from '../api/food';
+import CheckoutShowPage from './CheckoutShowPage';
+import CheckoutSidebar from './CheckoutSidebar';
 
 class App extends Component {
   state = {
@@ -79,6 +81,10 @@ class App extends Component {
             <Route exact path="/sign-in" render={(routeProps) => (
               <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />
             )} />
+            <Route exact path="/checkout" render={(routeProps) => (
+              <CheckoutShowPage {...routeProps} onSignIn={this.getCurrentUser} cartDetails={this.fetchFoods()} />
+            )} />
+            <Route component={CheckoutSidebar} />
           </Switch>
         </div>
       </BrowserRouter>

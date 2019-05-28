@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card, Button, Icon, List, Image, Grid } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 
-export default class CheckoutSidebar extends Component {
+class CheckoutSidebar extends Component {
   state = {
     orders: [],
     subTotal: 0,
@@ -29,6 +30,11 @@ export default class CheckoutSidebar extends Component {
   componentDidMount = async () => {
     await this.setState({ orders: this.props.cartItems });
     await this.calculateTotalPrice();
+  };
+
+  redirectToCheckout = () => {
+    const { history } = this.props;
+    if (history) this.props.history.push('/checkout');
   };
 
   render() {
@@ -85,7 +91,7 @@ export default class CheckoutSidebar extends Component {
           </List>
         </Card.Content>
 
-        <Button tablet={16} computer={16} fluid animated='vertical' color='teal'>
+        <Button tablet={16} computer={16} fluid animated='vertical' color='teal' onClick={this.redirectToCheckout}>
           <Button.Content hidden>
             <Icon name='cart' />
           </Button.Content>
@@ -95,3 +101,5 @@ export default class CheckoutSidebar extends Component {
     )
   }
 }
+
+export default withRouter(CheckoutSidebar)
