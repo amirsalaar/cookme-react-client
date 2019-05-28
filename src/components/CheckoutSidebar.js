@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import { Card, Button, Icon, List, Image, Grid } from 'semantic-ui-react';
-import Food from '../api/food';
 
 export default class CheckoutSidebar extends Component {
   state = {
-    order: [],
+    orders: [],
+    subTotal: 0,
+    tax: 0,
   };
 
-  calculateTotalPrice = () => {
-    // let subTotal = 0;
-    // if (this.props.cartItems.length > 0) {
-    //   this.props.cartItems.forEach(cartItem => {
-    //     subTotal += cartItem.food.price * cartItem.quantity;
-    //   });
-    //   return this.setState({ subTotal: 0, tax: subTotal * 0.12, total: this.state.subTotal + this.state.tax })
-    // };
-    // return this.state
-  };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.cartItems !== this.props.cartItems) {
-      this.setState({ order: nextProps.cartItems })
+  calculateTotalPrice = async () => {
+    let subTotal = 0;
+    if (this.state.orders.length > 0) {
+      this.state.orders.forEach(cartItem => {
+        subTotal += cartItem.food.price * cartItem.quantity;
+      });
+      return this.setState({ subTotal: subTotal.toFixed(2), tax: (subTotal * 0.12).toFixed(2) })
     };
+    return this.state
   };
 
-  componentDidMount() {
-    this.setState({ order: this.props.cartItems });
+  componentWillReceiveProps = async (nextProps) => {
+    if (nextProps.cartItems !== this.props.cartItems) {
+      await this.setState({ orders: nextProps.cartItems })
+    };
+    await this.calculateTotalPrice();
   };
 
-  onAddItemToCart = () => {
-
-  }
+  componentDidMount = async () => {
+    await this.setState({ orders: this.props.cartItems });
+    await this.calculateTotalPrice();
+  };
 
   render() {
+    const { orders: cartItems } = this.state;
     const classes = {
       sidebarCardHeader: { fontSize: 15 },
       listQuantity: { marginRight: 5, marginLeft: 3, fontWeight: 'bold' },
@@ -46,17 +46,17 @@ export default class CheckoutSidebar extends Component {
           <Card.Header style={classes.sidebarCardHeader}>Your order</Card.Header>
           <Card.Description>
             <List>
-              {this.state.order.map((cartItem, index) => {
+              {cartItems.map((cartItem, index) => {
                 return (
                   <List.Item key={index}>
                     <List.Content floated='left'>
-                      <span><Icon name='minus' size='tiny' /></span>
+                      {/* <span><Icon name='minus' size='tiny' /></span> */}
                       <span style={classes.listQuantity}>{cartItem.quantity}</span>
-                      <span><Icon name='plus' size='tiny' /></span>
+                      {/* <span><Icon name='plus' size='tiny' /></span> */}
                     </List.Content>
                     <List.Content style={classes.itemName}>
                       {cartItem.food.name}
-                      <span style={{ marginLeft: 'auto', padding: 0 }}><Icon name='dollar' size='small' />{cartItem.food.price}
+                      <span style={{ marginLeft: 'auto', padding: 0 }}><Icon name='dollar' size='small' />{cartItem.food.price * cartItem.quantity}
                       </span>
                     </List.Content>
                   </List.Item>
@@ -70,17 +70,17 @@ export default class CheckoutSidebar extends Component {
           <List style={classes.totalList}>
             <List.Item>
               <List.Content content='Subtotal' floated='left' />
-              <List.Content floated='right'>$  </List.Content>
+              <List.Content floated='right'><Icon name='dollar' size='small' />{this.state.subTotal}</List.Content>
             </List.Item>
             <List.Item>
               <List.Content content='Tax' floated='left' />
-              <List.Content floated='right'>$</List.Content>
+              <List.Content floated='right'><Icon name='dollar' size='small' />{this.state.tax}</List.Content>
             </List.Item>
             <List.Item>
               <List.Content floated='left'>
                 Total <small>(Inc. Tax)</small>
               </List.Content>
-              <List.Content floated='right'>$ </List.Content>
+              <List.Content floated='right'><Icon name='dollar' size='small' />{parseFloat(this.state.subTotal) + parseFloat(this.state.tax)}</List.Content>
             </List.Item>
           </List>
         </Card.Content>

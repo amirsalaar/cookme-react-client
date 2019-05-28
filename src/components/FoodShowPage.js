@@ -26,9 +26,9 @@ export default class FoodShowPage extends Component {
     cartDetails: [],
   };
 
-  componentDidMount = () => {
-    this.fetchFood();
-    this.setState({ cartDetails: this.props.cartDetails })
+  componentDidMount = async () => {
+    await this.fetchFood();
+    await this.setState({ cartDetails: this.props.cartDetails })
   };
 
   fetchFood = () => {
