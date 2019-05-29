@@ -12,6 +12,7 @@ class CheckoutSidebar extends Component {
   calculateTotalPrice = async () => {
     let subTotal = 0;
     if (this.state.orders.length > 0) {
+      console.log(this.state.orders)
       this.state.orders.forEach(cartItem => {
         subTotal += cartItem.food.price * cartItem.quantity;
       });
@@ -27,9 +28,9 @@ class CheckoutSidebar extends Component {
     await this.calculateTotalPrice();
   };
 
-  componentDidMount = async () => {
-    await this.setState({ orders: this.props.cartItems });
-    await this.calculateTotalPrice();
+  componentDidMount = () => {
+    this.setState({ orders: this.props.cartItems });
+    this.calculateTotalPrice();
   };
 
   redirectToCheckout = () => {
@@ -45,7 +46,6 @@ class CheckoutSidebar extends Component {
       itemName: { display: 'flex' },
       totalList: { fontSize: '0.8 em' },
     };
-
     return (
       <Card centered fluid>
         <Card.Content>
@@ -90,13 +90,20 @@ class CheckoutSidebar extends Component {
             </List.Item>
           </List>
         </Card.Content>
+        {this.props.hidden ?
+          (
+            <></>
+          )
+          :
+          (
+            <Button tablet={16} computer={16} fluid animated='vertical' color='teal' onClick={this.redirectToCheckout}>
+              <Button.Content hidden>
+                <Icon name='cart' />
+              </Button.Content>
+              <Button.Content visible>Checkout</Button.Content>
+            </Button>
+          )}
 
-        <Button tablet={16} computer={16} fluid animated='vertical' color='teal' onClick={this.redirectToCheckout}>
-          <Button.Content hidden>
-            <Icon name='cart' />
-          </Button.Content>
-          <Button.Content visible>Checkout</Button.Content>
-        </Button>
       </Card >
     )
   }

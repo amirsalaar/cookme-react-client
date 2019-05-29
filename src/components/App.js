@@ -16,10 +16,12 @@ class App extends Component {
     currentUser: null,
     loading: true,
     cartModel: [],
+    cartDetails: [],
   };
 
-  componentDidMount = async () => {
-    await this.getCurrentUser();
+  componentDidMount = () => {
+    this.getCurrentUser();
+    this.fetchFoods()
   };
 
   getCurrentUser = async () => {
@@ -30,7 +32,7 @@ class App extends Component {
       };
       const cartModel = await User.cart(user.id);
       if (cartModel) {
-        this.setState({ cartModel })
+        this.setState({ cartModel }, () => this.fetchFoods())
       };
       this.setState({ loading: false });
     } catch (error) {
@@ -44,23 +46,23 @@ class App extends Component {
 
   addToCart = (params) => {
     this.setState({ cartModel: [...this.state.cartModel, params] });
+    this.fetchFoods()
   };
 
-  fetchFoods = () => {
-    const order = [];
-    this.state.cartModel.map(item => {
-      Food.one(item.foodId).then(
-        food => order.push({ food: food, quantity: item.quantity })
-      );
-    });
-    return order;
+  fetchFoods = async () => {
+    const orders = [];
+    const ids = this.state.cartModel.map(cartItem => cartItem.foodId);
+    const quantity = this.state.cartModel.map(cartItem => cartItem.quantity)
+    const responses = await Food.multiple(ids);
+    await Promise.all(responses).then(foods => foods.forEach((food, index) => orders.push({ food, quantity: quantity[index] })));
+    this.setState({ cartDetails: orders })
   };
 
   render() {
+    const { cartDetails } = this.state;
     if (this.state.loading) {
       return <div />;
     };
-
     return (
       <BrowserRouter>
         <div>
@@ -73,7 +75,7 @@ class App extends Component {
             <Route
               exact path="/foods/:id"
               render={routeProps => (
-                <FoodShowPage {...routeProps} cartCount={this.state.cartModel.length} onAddToCart={params => this.addToCart(params)} cartDetails={this.fetchFoods()} />
+                <FoodShowPage {...routeProps} cartCount={this.state.cartModel.length} onAddToCart={params => this.addToCart(params)} cartDetails={cartDetails} />
               )} />
             <Route exact path="/sign-up" render={routeProps => (
               <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
@@ -82,7 +84,7 @@ class App extends Component {
               <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />
             )} />
             <Route exact path="/checkout" render={(routeProps) => (
-              <CheckoutShowPage {...routeProps} onSignIn={this.getCurrentUser} cartDetails={this.fetchFoods()} />
+              <CheckoutShowPage {...routeProps} onSignIn={this.getCurrentUser} cartItems={cartDetails} />
             )} />
             <Route component={CheckoutSidebar} />
           </Switch>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Container } from 'semantic-ui-react';
+import CheckoutSidebar from './CheckoutSidebar';
 
 export default class CheckoutShowPage extends Component {
   state = {
@@ -7,15 +8,23 @@ export default class CheckoutShowPage extends Component {
   };
 
   componentDidMount() {
-    this.setState({ cartItems: this.props.Details })
   };
 
   render() {
+    document.body.classList = '';
+    const classes = {
+      container: {
+        width: '50%'
+      }
+    }
+
     return (
-      <Container>
-        <Grid celled>
-          <Grid.Column>
-          
+      <Container style={classes.container}>
+        <Grid celled stackable>
+          <Grid.Column width={12}>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <CheckoutSidebar hidden cartItems={this.props.cartItems} />
           </Grid.Column>
         </Grid>
       </Container>

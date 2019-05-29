@@ -26,9 +26,9 @@ export default class FoodShowPage extends Component {
     cartDetails: [],
   };
 
-  componentDidMount = async () => {
-    await this.fetchFood();
-    await this.setState({ cartDetails: this.props.cartDetails })
+  componentDidMount = () => {
+    this.fetchFood();
+    this.setState({cartDetails: this.props.cartDetails})
   };
 
   fetchFood = () => {
@@ -141,7 +141,7 @@ export default class FoodShowPage extends Component {
 
           <Grid.Column computer={3} tablet={4} style={classes.sidebarContainer}>
             <Grid.Row>
-              <CheckoutSidebar cartItems={this.state.cartDetails} />
+              <CheckoutSidebar cartItems={this.props.cartDetails} />
             </Grid.Row>
           </Grid.Column>
 

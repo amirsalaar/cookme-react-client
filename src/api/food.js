@@ -13,6 +13,12 @@ const Food = {
     });
     return await res.json();
   },
+  multiple(ids) {
+    return ids.map(id => fetch(`${BASE_URL}/foods/${id}`, {
+      credentials: "include"
+    }).then(response => response.json())
+    )
+  }
 }
 
 export default Food;
