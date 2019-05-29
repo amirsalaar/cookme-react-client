@@ -11,6 +11,7 @@ import Food from '../api/food';
 import CheckoutShowPage from './CheckoutShowPage';
 import CheckoutSidebar from './CheckoutSidebar';
 
+
 class App extends Component {
   state = {
     currentUser: null,

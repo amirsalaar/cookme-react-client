@@ -9,10 +9,9 @@ class CheckoutSidebar extends Component {
     tax: 0,
   };
 
-  calculateTotalPrice = async () => {
+  calculateTotalPrice = () => {
     let subTotal = 0;
     if (this.state.orders.length > 0) {
-      console.log(this.state.orders)
       this.state.orders.forEach(cartItem => {
         subTotal += cartItem.food.price * cartItem.quantity;
       });
@@ -29,8 +28,8 @@ class CheckoutSidebar extends Component {
   };
 
   componentDidMount = () => {
-    this.setState({ orders: this.props.cartItems });
-    this.calculateTotalPrice();
+    this.setState({ orders: this.props.cartItems }, () => this.calculateTotalPrice());
+    ;
   };
 
   redirectToCheckout = () => {
