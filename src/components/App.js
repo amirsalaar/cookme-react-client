@@ -76,16 +76,30 @@ class App extends Component {
             <Route
               exact path="/foods/:id"
               render={routeProps => (
-                <FoodShowPage {...routeProps} cartCount={this.state.cartModel.length} onAddToCart={params => this.addToCart(params)} cartDetails={cartDetails} />
+                <FoodShowPage
+                  {...routeProps}
+                  cartCount={this.state.cartModel.length}
+                  onAddToCart={params => this.addToCart(params)} cartDetails={cartDetails}
+                />
               )} />
             <Route exact path="/sign-up" render={routeProps => (
-              <SignUpPage {...routeProps} onSignUpPage={this.getCurrentUser} />
+              <SignUpPage
+                {...routeProps}
+                onSignUpPage={this.getCurrentUser}
+              />
             )} />
             <Route exact path="/sign-in" render={(routeProps) => (
-              <SignInPage {...routeProps} onSignIn={this.getCurrentUser} />
+              <SignInPage
+                {...routeProps}
+                onSignIn={this.getCurrentUser}
+              />
             )} />
             <Route exact path="/checkout" render={(routeProps) => (
-              <CheckoutShowPage {...routeProps} onSignIn={this.getCurrentUser} cartItems={cartDetails} />
+              <CheckoutShowPage
+                {...routeProps}
+                currentUser={this.state.currentUser}
+                cartDetails={cartDetails}
+              />
             )} />
             <Route component={CheckoutSidebar} />
           </Switch>
