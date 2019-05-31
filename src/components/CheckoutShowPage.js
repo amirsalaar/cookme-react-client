@@ -4,9 +4,10 @@ import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';
 import { Order } from '../api/order';
+import Receipt from './Receipt';
 
 const styles = {
-  itemsContainer: { width: '75%' },
+  itemsContainer: { width: '60%' },
   sidebarContainer: { paddingRight: 10, paddingLeft: 10 },
   itemName: { display: 'flex' },
   totalList: { fontSize: '0.8 em', fontWeight: 'bold' },
@@ -24,7 +25,7 @@ export default class CheckoutShowPage extends Component {
     currentUser: null,
     isConfirmed: false,
     // isPaid: false,
-    stage: null,
+    stage: 'Receipt',
     orderID: null
   };
 
@@ -47,9 +48,9 @@ export default class CheckoutShowPage extends Component {
   };
 
   componentDidMount = async () => {
-    await this.setState({ 
-      cartDetails: this.props.cartDetails, 
-      stage: 'Confirmation',
+    await this.setState({
+      cartDetails: this.props.cartDetails,
+      stage: 'Receipt',
       currentUser: this.props.currentUser,
     }, () => this.calculateTotalPrice());
   };
@@ -64,7 +65,7 @@ export default class CheckoutShowPage extends Component {
   };
 
   showReceipt = () => {
-    this.setState({stage: 'Receipt'})
+    this.setState({ stage: 'Receipt' })
   };
 
   render() {
@@ -77,7 +78,13 @@ export default class CheckoutShowPage extends Component {
       orderID,
       currentUser
     } = this.state;
-
+    let total = (parseFloat(this.state.subTotal) + parseFloat(this.state.tax)).toFixed(2);
+    const receiptDetails = {
+      subTotal: this.state.subTotal,
+      tax: this.state.tax,
+      total,
+      orderID
+    };
     return (
       <Container mobile={16} tablet={10} computer={9}>
         <Grid stackable centered >
@@ -115,8 +122,8 @@ export default class CheckoutShowPage extends Component {
                 />
               </Step.Group>
 
-              <Segment attached stacked >
-                {!isConfirmed ?
+              <Segment attached piled >
+                {stage === 'Confirmation' ?
                   (
                     <Container style={styles.itemsContainer} >
                       <List>
@@ -155,7 +162,7 @@ export default class CheckoutShowPage extends Component {
                             Total <small>(Inc. Tax)</small>
                           </List.Content>
                           <List.Content floated='right'><Icon name='dollar' size='small' />
-                            {(parseFloat(this.state.subTotal) + parseFloat(this.state.tax)).toFixed(2)}
+                            {total}
                           </List.Content>
                         </List.Item>
                       </List>
@@ -172,7 +179,7 @@ export default class CheckoutShowPage extends Component {
                         </Grid.Column>
                       </Grid>
                     </Container>
-                  ) : (
+                  ) : (stage === 'Billing' ? (
                     <Grid centered>
                       <Grid.Column mobile={16} tablet={9} computer={7} largeScreen={6}>
                         <StripeProvider apiKey={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}>
@@ -188,6 +195,12 @@ export default class CheckoutShowPage extends Component {
                         </StripeProvider>
                       </Grid.Column>
                     </Grid>
+                  ) : (
+                      <Receipt
+                        cartDetails={this.props.cartDetails}
+                        receiptDetails={receiptDetails}
+                      />
+                    )
                   )}
               </Segment>
 
