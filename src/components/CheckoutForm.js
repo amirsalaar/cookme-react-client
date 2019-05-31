@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import { Form, Input, Icon, Button, Grid, Label } from 'semantic-ui-react';
+import { Form, Input, Icon, Button, Grid } from 'semantic-ui-react';
 import { Order } from '../api/order';
+import Session from '../api/session';
 
 const styles = {
   cardElement: {
@@ -26,7 +27,7 @@ class CheckoutForm extends Component {
   state = {
     orderID: null,
     currentUser: null,
-  }
+  };
 
   componentWillReceiveProps = async (nextProps) => {
     const { orderID } = nextProps;
@@ -46,7 +47,10 @@ class CheckoutForm extends Component {
       { name: cardInfo.name, }
     );
     const response = await Order.charge(token, this.state.orderID);
-    if (response.ok) console.log("Purchase Complete!")
+    if (response.status === 200) {
+      const res = await Session.destroyCart();
+      this.props.onPay();
+    };
   };
 
   render() {
@@ -58,7 +62,7 @@ class CheckoutForm extends Component {
             Credit/Debit Card Information
           </Form.Field>
           <Form.Field required >
-            <Input size='tiny' type='text' name='name' iconPosition='left' placeholder="Card Holder's Name" >
+            <Input type='text' name='name' iconPosition='left' placeholder="Card Holder's Name" >
               <Icon name='user' />
               <input type='text' name='name' placeholder="Card Holder's Name" />
             </Input>

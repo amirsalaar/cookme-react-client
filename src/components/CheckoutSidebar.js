@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, Icon, List, Image, Grid } from 'semantic-ui-react';
+import { Card, Button, Icon, List } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 const classes = {

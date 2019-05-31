@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Card, Segment, List, Icon, ListContent, Button } from 'semantic-ui-react';
+import { Grid, Container, Segment, List, Icon, ListContent, Button } from 'semantic-ui-react';
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';
@@ -23,7 +23,7 @@ export default class CheckoutShowPage extends Component {
     disabled: true,
     currentUser: null,
     isConfirmed: false,
-    isPaid: false,
+    // isPaid: false,
     stage: null,
     orderID: null
   };
@@ -63,6 +63,10 @@ export default class CheckoutShowPage extends Component {
     if (nextProps.currentUser) { await this.setState({ currentUser: this.props.currentUser }) };
   };
 
+  showReceipt = () => {
+    this.setState({stage: 'Receipt'})
+  };
+
   render() {
     document.body.classList = '';
     const {
@@ -98,7 +102,7 @@ export default class CheckoutShowPage extends Component {
                   link
                   onClick={this.handleClick}
                   title='Billing'
-                  description='Enter billing information'
+                  description='Download your receipt'
                 />
                 <Step
                   // active={active === 'Billing'}
@@ -177,6 +181,7 @@ export default class CheckoutShowPage extends Component {
                               <CheckoutForm
                                 orderID={orderID}
                                 currentUser={currentUser}
+                                onPay={this.showReceipt}
                               />
                             </Elements>
                           </div>

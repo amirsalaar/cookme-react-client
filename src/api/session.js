@@ -30,6 +30,13 @@ const Session = {
     });
     return await res.json();
   },
+  async destroyCart() {
+    const res = await fetch(`${BASE_URL}/session/destroy_cart`, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    return await res.json();
+  },
 }
 
 export default Session;
