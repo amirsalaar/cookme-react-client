@@ -46,7 +46,6 @@ class CheckoutSidebar extends Component {
 
   render() {
     const { orders: cartItems } = this.state;
-
     return (
       <Card centered fluid>
         <Card.Content>

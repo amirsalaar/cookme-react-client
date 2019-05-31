@@ -11,4 +11,13 @@ export const Order = {
     })
     return await res.json();
   },
+  async charge(token, orderID) {
+    const res = await fetch(`${BASE_URL}/orders/${orderID}/payments`, {
+      method: "POST",
+      credentials: 'include',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({stripeToken: token})
+    });
+    return await res.json();
+  },
 }
