@@ -75,3 +75,11 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
 .ui.table tfoot th {
   background: white !important;
 }
+
+.marker .ui.header:first-child {
+  margin: 0;
+}
+
+.marker .ui.header .icon:only-child {
+  padding: 0.11em !important;
+}

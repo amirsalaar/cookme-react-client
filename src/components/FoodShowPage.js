@@ -164,7 +164,12 @@ export default class FoodShowPage extends Component {
                 loadingElement={<div style={{ height: `100%` }} />}
                 containerElement={<div style={{ height: `100%` }} />}
                 mapElement={<div style={{ height: `100%` }} />}
-                kitchenLocation={{lat: cook.latitude, lng: cook.longitude}}
+                kitchen={{
+                  lat: cook.latitude, 
+                  lng: cook.longitude, 
+                  cookName: cook.full_name,
+                  phone: cook.phone_number
+                }}
                 />
             </Grid.Column>
           </Grid.Row>
