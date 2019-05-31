@@ -4,6 +4,9 @@ import CheckoutSidebar from './CheckoutSidebar';
 import Food from '../api/food';
 import Session from '../api/session';
 import { User } from '../api/user';
+import CookInformation from './CookInformation';
+import MapContainer from './MapContainer';
+import { GOOGLE_MAP } from '../config';
 
 const classes = {
   foodImageGrid: { padding: 50, },
@@ -15,12 +18,13 @@ const classes = {
   quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
   quantityRow: { paddingBottom: 10 },
   sidebarContainer: { paddingRight: 0, paddingLeft: 0 },
-
+  mapGrid: {width: '100%', height: '30vh'}
 };
 
 export default class FoodShowPage extends Component {
   state = {
     food: null,
+    cook: null,
     loading: true,
     quantity: 1,
     cartDetails: [],
@@ -28,13 +32,17 @@ export default class FoodShowPage extends Component {
 
   componentDidMount = () => {
     this.fetchFood();
-    this.setState({cartDetails: this.props.cartDetails})
+    this.setState({ cartDetails: this.props.cartDetails })
   };
 
   fetchFood = () => {
     const id = this.props.match.params.id;
     Food.one(id)
-      .then(food => this.setState({ food, loading: false }))
+      .then(food => this.setState({
+        food,
+        cook: food.cook,
+        loading: false
+      }))
       .catch(err => this.setState({ loading: false }));
   };
 
@@ -65,7 +73,7 @@ export default class FoodShowPage extends Component {
   };
 
   render() {
-    const { food, loading } = this.state;
+    const { food, loading, cook } = this.state;
     if (loading) {
       return (
         <Grid>
@@ -78,7 +86,7 @@ export default class FoodShowPage extends Component {
 
     return (
       <Container style={classes.container} >
-        <Grid stackable centered >
+        <Grid stackable centered celled>
 
           <Grid.Column computer={13} tablet={12} >
             <Grid stackable>
@@ -145,13 +153,20 @@ export default class FoodShowPage extends Component {
             </Grid.Row>
           </Grid.Column>
 
-          <Grid.Row>
+          <Grid.Row >
             <Grid.Column width={4} style={classes.foodImageGrid}>
-              Cook
-              </Grid.Column>
-            <Grid.Column width={4} style={classes.foodImageGrid}>
-              kitchen location, kitchen map
-              </Grid.Column>
+              <CookInformation cook={cook} />
+            </Grid.Column>
+            <Grid.Column width={8} style={classes.mapGrid}>
+              <MapContainer
+                isMarkerShown
+                googleMapURL={GOOGLE_MAP}
+                loadingElement={<div style={{ height: `100%` }} />}
+                containerElement={<div style={{ height: `100%` }} />}
+                mapElement={<div style={{ height: `100%` }} />}
+                kitchenLocation={{lat: cook.latitude, lng: cook.longitude}}
+                />
+            </Grid.Column>
           </Grid.Row>
 
         </Grid>
