@@ -45,12 +45,21 @@ class MapContainer extends Component {
 
 
   render() {
+    console.log('kitchen', this.props.kitchen)
     const { lat, lng } = this.state.kitchen;
     const { selectedKitchen, kitchen } = this.state;
     return (
       <GoogleMap
-        defaultZoom={15}
+        defaultZoom={16}
         defaultCenter={{ lat: lat, lng: lng }}
+        defaultOptions={{
+          streetViewControl: false,
+          scaleControl: false,
+          mapTypeControl: false,
+          panControl: false,
+          rotateControl: false,
+          fullscreenControl: false
+        }}
       >
         {
           this.props.isMarkerShown &&
