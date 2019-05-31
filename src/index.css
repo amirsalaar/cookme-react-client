@@ -71,3 +71,7 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
   width: 98% !important;
   border-radius: 0.28571429rem !important;
 }
+
+.ui.table tfoot th {
+  background: white !important;
+}

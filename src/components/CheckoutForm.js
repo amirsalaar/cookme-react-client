@@ -70,10 +70,10 @@ class CheckoutForm extends Component {
           <Form.Field style={styles.cardElementWrapper}>
             <CardElement style={styles.cardElement} />
           </Form.Field>
-
+          
           <Grid centered style={styles.payButton}>
-            <Grid.Column textAlign="center" mobile={16} tablet={7} computer={7}>
-              <Button compact fluid positive color='teal' type='submit'>Pay</Button>
+            <Grid.Column textAlign="center" mobile={16} tablet={7} computer={8}>
+              <Button fluid positive color='teal' type='submit'>Place Order</Button>
             </Grid.Column>
           </Grid>
         </Form>

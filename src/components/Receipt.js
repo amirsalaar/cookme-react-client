@@ -3,11 +3,12 @@ import { Container, List, ListContent, Icon, Grid, Button, Header, Message } fro
 import Moment from 'react-moment';
 
 const styles = {
-  itemsContainer: { width: '60%' },
+  itemsContainer: { width: '60%', marginBottom: '2em', marginTop: '2em'},
   itemName: { display: 'flex' },
-  totalList: { fontSize: '0.8 em', fontWeight: 'bold' },
-  orderDetails: { fontSize: '1.1em' },
-  iconConfirm: {margin: 'auto'}
+  totalList: { fontSize: '1 em', fontWeight: 'bold' },
+  orderDetails: { fontSize: '1.1 em' },
+  iconConfirm: {margin: 'auto'},
+  itemsList: {fontSize: '1.1em'},
 };
 
 export default function Receipt(props) {
@@ -45,7 +46,7 @@ export default function Receipt(props) {
 
         </Grid.Row>
       </Grid>
-      <List>
+      <List style={styles.itemsList}>
         {cartDetails.map((cartItem, index) => {
           return (
             <List.Item key={index} >

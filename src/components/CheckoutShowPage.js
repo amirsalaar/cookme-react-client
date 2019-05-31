@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment, List, Icon, ListContent, Button } from 'semantic-ui-react';
+import { Grid, Container, Segment, List, Icon, ListContent, Button, Header, Table, ListItem } from 'semantic-ui-react';
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';
@@ -7,7 +7,7 @@ import { Order } from '../api/order';
 import Receipt from './Receipt';
 
 const styles = {
-  itemsContainer: { width: '60%' },
+  itemsContainer: { width: '60%', marginBottom: '2em', marginTop: '2em' },
   sidebarContainer: { paddingRight: 10, paddingLeft: 10 },
   itemName: { display: 'flex' },
   totalList: { fontSize: '0.8 em', fontWeight: 'bold' },
@@ -25,7 +25,7 @@ export default class CheckoutShowPage extends Component {
     currentUser: null,
     isConfirmed: false,
     // isPaid: false,
-    stage: 'Receipt',
+    stage: 'Confirmation',
     orderID: null
   };
 
@@ -50,7 +50,7 @@ export default class CheckoutShowPage extends Component {
   componentDidMount = async () => {
     await this.setState({
       cartDetails: this.props.cartDetails,
-      stage: 'Receipt',
+      stage: 'Confirmation',
       currentUser: this.props.currentUser,
     }, () => this.calculateTotalPrice());
   };
@@ -126,46 +126,85 @@ export default class CheckoutShowPage extends Component {
                 {stage === 'Confirmation' ?
                   (
                     <Container style={styles.itemsContainer} >
-                      <List>
-                        {cartDetails.map((cartItem, index) => {
-                          return (
-                            <List.Item key={index} >
-                              <ListContent floated='left'>&bull;</ListContent>
-                              <List.Content floated='left'>
-                                {/* <span><Icon name='minus' size='tiny' /></span> */}
-                                <span style={styles.listQuantity}>{cartItem.quantity}</span>
-                                {/* <span><Icon name='plus' size='tiny' /></span> */}
-                              </List.Content>
-                              <List.Content style={styles.itemName}>
-                                {cartItem.food.name}
-                                <span style={{ marginLeft: 'auto', padding: 0 }}><Icon name='dollar' size='small' />{cartItem.food.price * cartItem.quantity}
-                                </span>
-                              </List.Content>
-                            </List.Item>
-                          )
-                        })}
-                      </List>
+                      <Grid centered>
+                        <Grid.Row>
+                          <Grid.Column textAlign='center'>
+                            <Header>Cart Items</Header>
+                          </Grid.Column>
+                        </Grid.Row>
+                      </Grid>
 
-                      <hr />
+                      <Table stackable>
+                        <Table.Header>
+                          <Table.Row>
+                            <Table.HeaderCell>Quantity</Table.HeaderCell>
+                            <Table.HeaderCell>Food Item</Table.HeaderCell>
+                            <Table.HeaderCell textAlign='right'>
+                              <Icon name='dollar' />Price
+                              </Table.HeaderCell>
+                          </Table.Row>
+                        </Table.Header>
+                        
+                        <Table.Body>
+                          {cartDetails.map((cartItem, index) => {
+                            return (
+                              <Table.Row key={index}>
+                                <Table.Cell>
+                                  {cartItem.quantity}
+                                </Table.Cell>
+                                <Table.Cell>
+                                  {cartItem.food.name}
+                                </Table.Cell>
+                                <Table.Cell textAlign='right'>
+                                  {cartItem.food.price * cartItem.quantity}
+                                </Table.Cell>
+                              </Table.Row>
+                            )
+                          })}
+                        </Table.Body>
 
-                      <List style={styles.totalList}>
-                        <List.Item>
-                          <List.Content content='Subtotal' floated='left' />
-                          <List.Content floated='right'><Icon name='dollar' size='small' />{this.state.subTotal}</List.Content>
-                        </List.Item>
-                        <List.Item>
-                          <List.Content content='Tax' floated='left' />
-                          <List.Content floated='right'><Icon name='dollar' size='small' />{this.state.tax}</List.Content>
-                        </List.Item>
-                        <List.Item>
-                          <List.Content floated='left'>
-                            Total <small>(Inc. Tax)</small>
-                          </List.Content>
-                          <List.Content floated='right'><Icon name='dollar' size='small' />
-                            {total}
-                          </List.Content>
-                        </List.Item>
-                      </List>
+                        <Table.Footer>
+                          <Table.Row>
+                            <Table.HeaderCell>
+                              <List style={styles.totalList}>
+                                <List.Item>
+                                  <List.Content content='Subtotal' floated='left' />
+                                </List.Item>
+                                <List.Item>
+                                  <List.Content content='Tax' floated='left' />
+                                </List.Item>
+                                <List.Item>
+                                  <List.Content content='Total' floated='left' />
+                                </List.Item>
+                              </List>
+                            </Table.HeaderCell>
+
+                            <Table.HeaderCell />
+
+                            <Table.HeaderCell >
+                              <List style={styles.totalList}>
+                                <List.Item>
+                                  <List.Content floated='right'>
+                                    {this.state.subTotal}
+                                  </List.Content>
+                                </List.Item>
+                                <List.Item>
+                                  <List.Content floated='right'>
+                                    {this.state.tax}
+                                  </List.Content>
+                                </List.Item>
+                                <List.Item>
+                                  <List.Content floated='right'>
+                                    {total}
+                                  </List.Content>
+                                </List.Item>
+                              </List>
+                            </Table.HeaderCell>
+
+                          </Table.Row>
+                        </Table.Footer>
+                      </Table>
+
                       <Grid>
                         <Grid.Column textAlign="center">
                           <Button positive animated='vertical' size='large' onClick={this.handleProceedOrder}>
