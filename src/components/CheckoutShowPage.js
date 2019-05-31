@@ -11,7 +11,6 @@ const styles = {
   itemName: { display: 'flex' },
   totalList: { fontSize: '0.8 em', fontWeight: 'bold' },
   checkoutForm: { width: '40%' }
-  // shoppingButtun: {alignItem: 'center'}
 };
 
 export default class CheckoutShowPage extends Component {
@@ -24,6 +23,7 @@ export default class CheckoutShowPage extends Component {
     disabled: true,
     currentUser: null,
     isConfirmed: false,
+    isPaid: false,
     stage: null,
     orderID: null
   };
@@ -44,10 +44,14 @@ export default class CheckoutShowPage extends Component {
   handleProceedOrder = () => {
     Order.create(this.state.currentUser.id)
       .then(order => this.setState({ isConfirmed: true, stage: 'Billing', orderID: order.id }));
-  }
+  };
 
   componentDidMount = async () => {
-    await this.setState({ cartDetails: this.props.cartDetails, stage: 'Confirmation' }, () => this.calculateTotalPrice());
+    await this.setState({ 
+      cartDetails: this.props.cartDetails, 
+      stage: 'Confirmation',
+      currentUser: this.props.currentUser,
+    }, () => this.calculateTotalPrice());
   };
 
   componentWillReceiveProps = async (nextProps) => {
@@ -72,7 +76,6 @@ export default class CheckoutShowPage extends Component {
 
     return (
       <Container mobile={16} tablet={10} computer={9}>
-        {/* <Segment stacked raised size='tiny'> */}
         <Grid stackable centered >
 
           <Grid.Row centered>
@@ -187,7 +190,6 @@ export default class CheckoutShowPage extends Component {
           </Grid.Row>
 
         </Grid>
-        {/* </Segment > */}
       </Container >
     )
   }

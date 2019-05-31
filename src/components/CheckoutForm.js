@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
-import { BASE_URL } from '../config';
 import { Form, Input, Icon, Button, Grid, Label } from 'semantic-ui-react';
 import { Order } from '../api/order';
 
@@ -30,7 +29,7 @@ class CheckoutForm extends Component {
   }
 
   componentWillReceiveProps = async (nextProps) => {
-    const { orderID, currentUser } = nextProps;
+    const { orderID } = nextProps;
     if (orderID) {
       await this.setState({ orderID: this.props.orderID });
     };
@@ -46,12 +45,6 @@ class CheckoutForm extends Component {
     let { token } = await this.props.stripe.createToken(
       { name: cardInfo.name, }
     );
-    console.log(token)
-    // let response = await fetch(`${BASE_URL}/orders/${this.state.orderID}/payments`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "text/plain" },
-    //   body: token.id
-    // }); 
     const response = await Order.charge(token, this.state.orderID);
     if (response.ok) console.log("Purchase Complete!")
   };
@@ -80,8 +73,6 @@ class CheckoutForm extends Component {
             </Grid.Column>
           </Grid>
         </Form>
-
-        {/* <button onClick={this.submit}>Pay</button> */}
       </div>
     );
   }
