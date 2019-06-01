@@ -16,9 +16,7 @@ export default function HomePage() {
           </GridRow>
           <GridRow>
             <Grid.Column mobile={12} tablet={10} computer={8} largeScreen={6} stretched >
-              <SearchBox
-                
-              />
+              <SearchBox />
             </Grid.Column>
           </GridRow>
         </Grid >

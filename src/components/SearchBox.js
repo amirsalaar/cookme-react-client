@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Input, Grid, Header, Segment, Search, Label, Container, Icon, Image, GridColumn } from 'semantic-ui-react';
+import { Grid, Header, Segment, Search, Container, Icon, Image, GridColumn } from 'semantic-ui-react';
 import _ from 'lodash';
 import PropTypes from 'prop-types'
 import Food from '../api/food';
+import { withRouter } from 'react-router-dom';
 
 let source = [];
 
@@ -57,7 +58,7 @@ resultRenderer.propTypes = {
 }
 
 
-export default class SearchBox extends Component {
+class SearchBox extends Component {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -65,7 +66,12 @@ export default class SearchBox extends Component {
 
   handleResultSelect = (e, { result }) => {
     this.setState({ value: result.name });
+    this.redirectToResult(result.id);
+  };
 
+  redirectToResult = (id) => {
+    const { history } = this.props;
+    if (history) this.props.history.push(`/foods/${id}`);
   };
 
   handleSearchChange = (e, { value }) => {
@@ -110,3 +116,5 @@ export default class SearchBox extends Component {
     )
   }
 }
+
+export default withRouter(SearchBox);
