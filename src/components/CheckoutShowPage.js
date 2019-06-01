@@ -185,12 +185,12 @@ export default class CheckoutShowPage extends Component {
                               <List style={styles.totalList}>
                                 <List.Item>
                                   <List.Content floated='right'>
-                                    {this.state.subTotal.toFixed(2)}
+                                    {this.state.subTotal}
                                   </List.Content>
                                 </List.Item>
                                 <List.Item>
                                   <List.Content floated='right'>
-                                    {this.state.tax.toFixed(2)}
+                                    {this.state.tax}
                                   </List.Content>
                                 </List.Item>
                                 <List.Item>
