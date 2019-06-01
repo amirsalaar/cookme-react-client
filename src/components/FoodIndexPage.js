@@ -33,12 +33,10 @@ export default class FoodIndexPage extends Component {
       </>
     )
     return (
-      // <main className='page'>
       <div style={{ padding: 20 }} >
         <Container className='food-index'>
-          <Grid columns={3} doubling stackable className='masonry' >
+          <Grid columns={3} doubling stackable className='masonry'>
             {foods.map(food => (
-              // <Grid.Column mobile={16} tablet={8} computer={4} key={food.id}>
               <Grid.Column key={food.id}>
                 <FoodItem
                   image={food.pictures.length > 0 ? food.pictures[0].url : null}
@@ -55,7 +53,6 @@ export default class FoodIndexPage extends Component {
           </Grid>
         </Container>
       </div>
-      // </main>
     );
   };
 };

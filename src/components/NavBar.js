@@ -14,9 +14,6 @@ export class NavBar extends Component {
   render() {
     const { currentUser, onSignOut } = this.props;
 
-    const avatarUrl =
-      currentUser && currentUser.avatar ? currentUser.avatar.url : undefined;
-
     const handleSignOut = () => {
       Session.destroy()
         .then(() => {
@@ -78,16 +75,19 @@ export class NavBar extends Component {
                       </Button> */}
                     </Menu.Item>
 
-                    <Menu.Item>
+                    {/* <Menu.Item>
                       <Header as='h6'>
                         <Image circular src={avatarUrl} /> <span style={{ marginLeft: 5, fontSize: 14, verticalAlign: 'middle' }}>{currentUser.full_name}</span>
                       </Header>
-                    </Menu.Item>
+                    </Menu.Item> */}
 
-                    <DashboardMenuItem currentUser={currentUser} />
+                    <DashboardMenuItem
+                      currentUser={currentUser}
+                      onSignOutClick
+                    />
 
                     <Menu.Item as={Link} to='/' onClick={handleSignOut} >
-                      <Icon circular name='sign out' className='Change' />
+                      <Icon circular name='sign out' className='Change' /> Sign Out
                     </Menu.Item>
                   </React.Fragment>
                 ) : (

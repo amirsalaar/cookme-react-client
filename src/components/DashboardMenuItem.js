@@ -1,11 +1,18 @@
 import React from 'react'
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Header, Image } from 'semantic-ui-react';
 
 export default function DashboardMenuItem(props) {
   const { currentUser } = props;
 
+  const avatarUrl =
+    currentUser && currentUser.avatar ? currentUser.avatar.url : undefined;
+
   const menu = {
-    dashbordTitle: currentUser.verified ? 'My Kitchen' : 'Dashbord'
+    // dashbordTitle: currentUser.verified ? 'My Kitchen' : 'Dashbord'
+    dashbordTitle:
+      < Header as='h6' >
+        <Image circular src={avatarUrl} /> <span style={{ marginLeft: 5, fontSize: 14, verticalAlign: 'middle' }}>{currentUser.full_name}</span>
+      </Header >
   };
 
   return (
