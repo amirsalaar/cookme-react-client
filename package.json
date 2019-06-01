@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "dotenv": "^8.0.0",
+    "faker": "^4.1.0",
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-google-maps": "^9.4.5",
