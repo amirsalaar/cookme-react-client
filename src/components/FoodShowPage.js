@@ -80,6 +80,7 @@ export default class FoodShowPage extends Component {
   };
 
   render() {
+    document.body.className = '';
     const { food, loading, cook } = this.state;
     if (loading) {
       return (
@@ -90,7 +91,6 @@ export default class FoodShowPage extends Component {
         </Grid>
       )
     };
-    console.log(this.getAddress())
     return (
       <div className='page'>
         <Container style={styles.container}  >

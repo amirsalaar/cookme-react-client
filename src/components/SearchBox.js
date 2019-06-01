@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Header, Segment, Search, Container, Icon, Image, GridColumn } from 'semantic-ui-react';
+import { Grid, Header, Search, Container, Icon, Image, GridColumn } from 'semantic-ui-react';
 import _ from 'lodash';
 import PropTypes from 'prop-types'
 import Food from '../api/food';
