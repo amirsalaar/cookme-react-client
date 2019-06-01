@@ -18,11 +18,14 @@ class App extends Component {
     loading: true,
     cartModel: [],
     cartDetails: [],
+    currentLocation: null,
   };
+
 
   componentDidMount = () => {
     this.getCurrentUser();
-    this.fetchFoods()
+    this.fetchFoods();
+    this.getCurrentLocation();
   };
 
   getCurrentUser = async () => {
@@ -39,6 +42,20 @@ class App extends Component {
     } catch (error) {
       this.setState({ loading: false });
     };
+  };
+
+  getCurrentLocation = () => {
+    if (navigator && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        const currentCoords = position.coords;
+        this.setState({
+          currentLocation: {
+            latitude: currentCoords.latitude,
+            longitude: currentCoords.longitude,
+          }
+        })
+      })
+    }
   };
 
   signOut = () => {
@@ -60,7 +77,7 @@ class App extends Component {
   };
 
   render() {
-    const { cartDetails } = this.state;
+    const { cartDetails, currentLocation } = this.state;
     if (this.state.loading) {
       return <div />;
     };
@@ -72,7 +89,12 @@ class App extends Component {
           </header>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/foods" component={FoodIndexPage} />
+            <Route exact path="/foods" render={routeProps => (
+              <FoodIndexPage
+                {...routeProps}
+                currentLocation={currentLocation}
+              />
+            )} />
             <Route
               exact path="/foods/:id"
               render={routeProps => (
