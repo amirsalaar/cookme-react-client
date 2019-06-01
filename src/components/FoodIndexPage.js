@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Icon, Container } from 'semantic-ui-react';
+import { Grid, Icon, Container, Dimmer, Loader } from 'semantic-ui-react';
 import FoodItem from './FoodItem';
 import Food from '../api/food';
 // import { getDistance, convertDistance } from 'geolib';
@@ -15,13 +15,21 @@ export default class FoodIndexPage extends Component {
     this.state = {
       foods: [],
       currentLocation: currentLocation,
+      loading: true,
     };
   };
 
   componentDidMount() {
+    this.fetchFoods();
+  };
+
+  fetchFoods = () => {
     Food.all().then(foods => {
-      this.setState({ foods })
+      this.setState({
+        foods,
+      })
     });
+    this.setState({ loading: false })
   };
 
   distance(lat1, lon1, lat2, lon2) {
@@ -55,7 +63,7 @@ export default class FoodIndexPage extends Component {
 
   render() {
     document.body.classList = '';
-    const { foods } = this.state;
+    const { foods, loading } = this.state;
     const extra = (price) => (
       <>
         <div style={styles.price}>
@@ -64,6 +72,16 @@ export default class FoodIndexPage extends Component {
         </div>
       </>
     );
+    
+    if (loading) {
+      return (
+        <Grid>
+          <Dimmer active inverted>
+            <Loader size='large'>Loading</Loader>
+          </Dimmer>
+        </Grid>
+      )
+    };
 
     return (
       <div style={{ padding: 20 }} >
