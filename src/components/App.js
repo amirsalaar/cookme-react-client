@@ -102,7 +102,9 @@ class App extends Component {
                 <FoodShowPage
                   {...routeProps}
                   cartCount={this.state.cartModel.length}
-                  onAddToCart={params => this.addToCart(params)} cartDetails={cartDetails}
+                  onAddToCart={params => this.addToCart(params)}
+                  cartDetails={cartDetails}
+                  currentLocation={currentLocation}
                 />
               )} />
             <Route exact path="/sign-up" render={routeProps => (

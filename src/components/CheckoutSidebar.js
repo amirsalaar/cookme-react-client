@@ -3,10 +3,11 @@ import { Card, Button, Icon, List } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
 const classes = {
-  sidebarCardHeader: { fontSize: 15 },
+  sidebarCardHeader: { fontSize: '1.5em', marginBottom: '1em' },
   listQuantity: { marginRight: 5, marginLeft: 3, fontWeight: 'bold' },
-  itemName: { display: 'flex' },
-  totalList: { fontSize: '0.8 em' },
+  itemList: { fontSize: '1.15em' },
+  itemName: { display: 'flex', fontSize: '1em', },
+  totalList: { fontSize: '1.15em' },
 };
 
 class CheckoutSidebar extends Component {
@@ -54,7 +55,10 @@ class CheckoutSidebar extends Component {
             <List>
               {cartItems.map((cartItem, index) => {
                 return (
-                  <List.Item key={index}>
+                  <List.Item
+                    key={index}
+                    style={classes.itemList}
+                  >
                     <List.Content floated='left'>
                       {/* <span><Icon name='minus' size='tiny' /></span> */}
                       <span style={classes.listQuantity}>{cartItem.quantity}</span>
@@ -96,7 +100,15 @@ class CheckoutSidebar extends Component {
           )
           :
           (
-            <Button tablet={16} computer={16} fluid animated='vertical' color='teal' onClick={this.redirectToCheckout}>
+            <Button
+              tablet={16}
+              computer={16}
+              fluid
+              animated='vertical'
+              color='teal'
+              onClick={this.redirectToCheckout}
+              size='large'
+            >
               <Button.Content hidden>
                 <Icon name='cart' />
               </Button.Content>

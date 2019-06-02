@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Icon, Container, Dimmer, Loader } from 'semantic-ui-react';
 import FoodItem from './FoodItem';
 import Food from '../api/food';
+import getDistance from '../modules/getDistance';
 // import { getDistance, convertDistance } from 'geolib';
 
 const styles = {
@@ -32,20 +33,6 @@ export default class FoodIndexPage extends Component {
     this.setState({ loading: false })
   };
 
-  distance(lat1, lon1, lat2, lon2) {
-    var R = 6371; // km 
-    var dLat = (lat2 - lat1) * Math.PI / 180;
-    var dLon = (lon2 - lon1) * Math.PI / 180;
-    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c;
-    if (d > 1) return Math.round(d) + " km away";
-    else if (d <= 1) return Math.round(d * 1000) + " m away";
-    return d;
-  };
-
   calculateDistance = (lat, lng) => {
     let distance = 0;
     // distance = getDistance(this.state.currentLocation, {
@@ -55,7 +42,7 @@ export default class FoodIndexPage extends Component {
     // distance = (convertDistance(distance, 'km')).toFixed(2);
     const { currentLocation } = this.state;
     if (currentLocation) {
-      distance = this.distance(currentLocation.latitude, currentLocation.longitude, lat, lng)
+      distance = getDistance(currentLocation.latitude, currentLocation.longitude, lat, lng)
       return distance
     };
     return 'Your location is not available!'
@@ -98,9 +85,9 @@ export default class FoodIndexPage extends Component {
                   header={food.name}
                   meta={
                     <>
-                    <Icon name='point' size='small' />
-                   { this.calculateDistance(food.cook.latitude, food.cook.longitude)}
-                   </>
+                      <Icon name='point' size='small' />
+                      {this.calculateDistance(food.cook.latitude, food.cook.longitude)}
+                    </>
                   }
                   description={food.description}
                   extra={extra(food.price)}

@@ -5,29 +5,37 @@ import Food from '../api/food';
 import Session from '../api/session';
 import MapContainer from './MapContainer';
 import { GOOGLE_MAP } from '../config';
+import getDistance from '../modules/getDistance';
 
 const styles = {
-  foodImageGrid: { padding: 50, },
   container: { width: '85%', },
-  descriptionCard: { minHeight: 200, },
+  foodName: { fontSize: '1.5em' },
+  descriptionCard: { minHeight: 200, fontSize: '1.2em', lineHeight: '1.4em' },
   imageCard: { minHeight: 200, },
   shoppingButtunRow: { paddingTop: 0 },
   shoppingCard: { border: 'none', boxShadow: 'none' },
   quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
   quantityRow: { paddingBottom: 10 },
+  price: { color: 'teal', fontSize: '1.2em' },
+  foodImageGrid: { padding: 50, },
   sidebarContainer: { paddingRight: 0, paddingLeft: 0 },
   mapGrid: { width: '100%', height: '20vh' },
-  locationAddress: { padding: '1em 0em' },
-  price: { color: 'teal' }
+  locationAddress: { padding: '1em 0em', },
+  ditanceResult: {marginLeft: 'auto'}
 };
 
 export default class FoodShowPage extends Component {
-  state = {
-    food: null,
-    cook: null,
-    loading: true,
-    quantity: 1,
-    cartDetails: [],
+  constructor(props) {
+    super(props);
+    const { currentLocation } = this.props;
+    this.state = {
+      food: null,
+      cook: null,
+      loading: true,
+      quantity: 1,
+      cartDetails: [],
+      currentLocation: currentLocation
+    };
   };
 
   componentDidMount = () => {
@@ -79,6 +87,16 @@ export default class FoodShowPage extends Component {
       .concat(', ', address.province)
   };
 
+  calculateDistance = (lat, lng) => {
+    let distance = 0;
+    const { currentLocation } = this.state;
+    if (currentLocation) {
+      distance = getDistance(currentLocation.latitude, currentLocation.longitude, lat, lng)
+      return distance
+    };
+    return 'Your location is not available!'
+  };
+
   render() {
     document.body.className = '';
     const { food, loading, cook } = this.state;
@@ -91,6 +109,7 @@ export default class FoodShowPage extends Component {
         </Grid>
       )
     };
+
     return (
       <div className='page'>
         <Container style={styles.container}  >
@@ -110,8 +129,15 @@ export default class FoodShowPage extends Component {
                         <Grid.Column width={16} style={styles.mapGrid}>
                           <div style={styles.locationAddress}>
                             <CardMeta className='location-pin'>
-                              <Icon name='point' />
-                              {this.getAddress()}
+                              <span>
+                                <Icon name='point' />
+                                {this.getAddress()}
+                              </span>
+                              <span style={styles.ditanceResult}>
+                                {this.calculateDistance(
+                                  cook.latitude, cook.longitude
+                                )}
+                              </span>
                             </CardMeta>
                           </div>
                           <MapContainer
@@ -139,7 +165,10 @@ export default class FoodShowPage extends Component {
 
                   <Grid.Column width={8} >
                     <Card fluid>
-                      <Card.Content header={food.name} />
+                      <Card.Content
+                        header={food.name}
+                        style={styles.foodName}
+                      />
                       <Card.Content
                         description={food.description}
                         style={styles.descriptionCard}
