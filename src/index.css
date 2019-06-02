@@ -8,7 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.hero-header {font-size: 4em; text-shadow: 2px 2px #000; color: #fff; text-align: center;}
+.hero-header {font-size: 4em; text-shadow: 1px 1px 3px red; color: #fff; text-align: center; text-transform: uppercase}
 .hero-tagline {font-size: 3em; text-shadow: 2px 2px #000; color: #fff; text-align: center;}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -39,13 +39,28 @@ header {
   min-height: 90vh;
 }
 
-.home { 
-  min-height: 50vh; 
-}
+.home {  }
+
+.wrap-gird {display: flex; align-items: center; justify-content: center; min-height: 70vh;}
 
 .sign-in-page, .sign-up-page, .home-page {
-  background: url(../src/assets/images/hero-kitchen.jpg) no-repeat center
+  min-width: 100%;
+  min-height: 100%;
 }
+
+.sign-in-page::before, .sign-up-page::before, .home-page::before {
+  background: url(../src/assets/images/hero-kitchen.jpg) no-repeat center;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  opacity: 0.8;
+}
+
 nav .ui.segment {background: transparent; box-shadow: none; border: none; }
 
 nav .ui.menu {background: rgba(255,255,255,0.8)};
@@ -103,6 +118,10 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
   display: block;
 }
 
+.home-grid-row {
+  justify-content: center ;
+}
+
 @media only screen and (min-width: 768px) {
   .grid.masonry {
     -webkit-column-count: 2;
@@ -116,6 +135,13 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
   .ui.doubling.grid.masonry[class*="three column"] > .column {
     width: 100% !important;
   }
+
+  .home-grid-row {
+    justify-content: start !important;
+    margin-left: 2rem;
+  }
+
+  .hero-header {text-align: left;}
 }
 
 @media only screen and (min-width: 992px) {
@@ -124,6 +150,7 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
        -moz-column-count: 4;
             column-count: 4;
   }
+
 }
 
 .search .ui.input {

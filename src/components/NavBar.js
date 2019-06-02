@@ -39,22 +39,15 @@ export class NavBar extends Component {
                 <div style={{ fontSize: 20, marginLeft: 0, fontWeight: 700 }}>CookMe</div>
               </Menu.Item>
 
-              {/* <Menu.Item
-                name='home'
-                header as={NavLink} exact to="/"
-                active={activeItem === 'home'}
-                onClick={this.handleItemClick}
-              /> */}
-              <Menu.Item
-                name='foods'
-                header as={NavLink} exact to="/foods"
-                active={activeItem === 'foods'}
-                onClick={this.handleItemClick}
-              />
-
               <Menu.Menu position='right'>
                 {currentUser ? (
                   <React.Fragment>
+                    <Menu.Item
+                      name='foods'
+                      header as={NavLink} exact to="/foods"
+                      active={activeItem === 'foods'}
+                      onClick={this.handleItemClick}
+                    />
                     <Menu.Item
                       name='shopping basket'
                       header as={NavLink} exact to="/checkout"
@@ -66,20 +59,7 @@ export class NavBar extends Component {
                       <Label size='small' basic color='teal'>
                         {cartCount}
                       </Label>
-
-                      {/* <Button animated='vertical'>
-                        <Button.Content hidden>Shop</Button.Content>
-                        <Button.Content visible>
-                          <Icon name='shop' />
-                        </Button.Content>
-                      </Button> */}
                     </Menu.Item>
-
-                    {/* <Menu.Item>
-                      <Header as='h6'>
-                        <Image circular src={avatarUrl} /> <span style={{ marginLeft: 5, fontSize: 14, verticalAlign: 'middle' }}>{currentUser.full_name}</span>
-                      </Header>
-                    </Menu.Item> */}
 
                     <DashboardMenuItem
                       currentUser={currentUser}

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import HomePage from './HomePage';
 import { NavBar } from './NavBar';
+// import { NavBar } from './ResponsiveNavBar';
 import SignUpPage from './SignUpPage';
 import { User } from '../api/user';
 import SignInPage from './SignInPage';
