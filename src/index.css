@@ -41,7 +41,7 @@ header {
   min-height: 90vh;
 }
 
-.home {  }
+.home { width: 85vw ; }
 
 .wrap-gird {display: flex; align-items: center; justify-content: center; min-height: 70vh;}
 

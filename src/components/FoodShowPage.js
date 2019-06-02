@@ -8,7 +8,7 @@ import { GOOGLE_MAP } from '../config';
 import getDistance from '../modules/getDistance';
 
 const styles = {
-  container: { width: '85%', },
+  container: { width: '85%', marginTop: '2em' },
   foodName: { fontSize: '1.5em' },
   descriptionCard: { minHeight: 200, fontSize: '1.2em', lineHeight: '1.4em' },
   imageCard: { minHeight: 200, },
@@ -20,7 +20,7 @@ const styles = {
   foodImageGrid: { padding: 50, },
   sidebarContainer: { paddingRight: 0, paddingLeft: 0 },
   mapGrid: { width: '100%', height: '20vh' },
-  locationAddress: { padding: '1em 0em', },
+  locationAddress: { padding: '1em 0em', fontSize: '1.1em'},
   ditanceResult: {marginLeft: 'auto'}
 };
 
