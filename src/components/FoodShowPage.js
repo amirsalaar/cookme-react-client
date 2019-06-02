@@ -1,27 +1,30 @@
 import React, { Component } from 'react';
-import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, CardMeta, Segment } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, CardMeta, Segment, Rating } from 'semantic-ui-react';
 import CheckoutSidebar from './CheckoutSidebar';
 import Food from '../api/food';
 import Session from '../api/session';
 import MapContainer from './MapContainer';
 import { GOOGLE_MAP } from '../config';
 import getDistance from '../modules/getDistance';
+import RatingsController from './RatingsController';
 
 const styles = {
   container: { width: '85%', marginTop: '2em' },
   foodName: { fontSize: '1.5em' },
   descriptionCard: { minHeight: 200, fontSize: '1.2em', lineHeight: '1.4em' },
   imageCard: { minHeight: 200, },
-  shoppingButtunRow: { paddingTop: 0 },
+  shoppingButtonRow: { paddingTop: 0 },
   shoppingCard: { border: 'none', boxShadow: 'none' },
+  addToCartIcon: { fontSize: '1.5em' },
   quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
   quantityRow: { paddingBottom: 10 },
-  price: { color: 'teal', fontSize: '1.2em' },
+  cardFooter: { color: 'teal', fontSize: '1.2em', display: 'flex' },
+  ratingContainer: { marginLeft: 'auto' },
   foodImageGrid: { padding: 50, },
   sidebarContainer: { paddingRight: 0, paddingLeft: 0 },
   mapGrid: { width: '100%', height: '20vh' },
-  locationAddress: { padding: '1em 0em', fontSize: '1.1em'},
-  ditanceResult: {marginLeft: 'auto'}
+  locationAddress: { padding: '1em 0em', fontSize: '1.1em' },
+  ditanceResult: { marginLeft: 'auto' }
 };
 
 export default class FoodShowPage extends Component {
@@ -194,12 +197,19 @@ export default class FoodShowPage extends Component {
                             </Grid.Column>
                           </Grid.Row>
 
-                          <Grid.Row style={styles.shoppingButtunRow}>
+                          <Grid.Row style={styles.shoppingButtonRow}>
                             <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto' }}>
-                              <Button fluid positive animated='vertical' style={styles.shoppingButtun} size='large' onClick={this.handleAddToCart}>
-                                <Button.Content hidden>Add to Cart</Button.Content>
+                              <Button
+                                fluid positive
+                                animated='vertical'
+                                size='large'
+                                onClick={this.handleAddToCart}
+                              >
+                                <Button.Content hidden>
+                                  <Icon name='add to cart' style={styles.addToCartIcon} />
+                                </Button.Content>
                                 <Button.Content visible>
-                                  <Icon name='add to cart' size='large' />
+                                  Add to Cart
                                 </Button.Content>
                               </Button>
                             </Grid.Column>
@@ -207,9 +217,16 @@ export default class FoodShowPage extends Component {
 
                         </Grid>
                       </Card.Content>
-                      <Card.Content extra style={styles.price}>
-                        <Icon name='dollar' />
-                        {food.price}
+                      <Card.Content extra style={styles.cardFooter}>
+                        <span>
+                          <Icon name='dollar' />
+                          {food.price}
+                        </span>
+                        <span style={styles.ratingContainer}>
+                          <RatingsController
+                            currentRate={food.ratings}
+                          />
+                        </span>
                       </Card.Content>
                     </Card>
                   </Grid.Column>
