@@ -7,6 +7,7 @@ import MapContainer from './MapContainer';
 import { GOOGLE_MAP } from '../config';
 import getDistance from '../modules/getDistance';
 import RatingsController from './RatingsController';
+import FoodIngredients from './FoodIngredients';
 
 const styles = {
   container: { width: '85%', marginTop: '2em' },
@@ -176,6 +177,11 @@ export default class FoodShowPage extends Component {
                         description={food.description}
                         style={styles.descriptionCard}
                       />
+                      <Card.Content>
+                        <FoodIngredients
+                          ingredients={food.ingredients}
+                        />
+                      </Card.Content>
                       <Card.Content>
                         <Grid columns='equal' centered stackable>
 
