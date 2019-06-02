@@ -106,7 +106,7 @@ function NavBarMobile(props) {
       <Sidebar.Pusher
         dimmed={visible}
         onClick={onPusherClick}
-      // style={{ minHeight: "100vh" }}
+        style={{ minHeight: "100vh" }}
       >
         <nav>
           <Sticky>

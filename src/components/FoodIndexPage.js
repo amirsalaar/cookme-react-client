@@ -53,8 +53,12 @@ export default class FoodIndexPage extends Component {
     //   longitude: lng
     // });
     // distance = (convertDistance(distance, 'km')).toFixed(2);
-    distance = this.distance(this.state.currentLocation.latitude, this.state.currentLocation.longitude, lat, lng)
-    return distance
+    const { currentLocation } = this.state;
+    if (currentLocation) {
+      distance = this.distance(currentLocation.latitude, currentLocation.longitude, lat, lng)
+      return distance
+    };
+    return 'Your location is not available!'
   };
 
   handleFoodItemClick = (event) => {
@@ -72,7 +76,7 @@ export default class FoodIndexPage extends Component {
         </div>
       </>
     );
-    
+
     if (loading) {
       return (
         <Grid>
@@ -92,7 +96,12 @@ export default class FoodIndexPage extends Component {
                 <FoodItem
                   image={food.pictures.length > 0 ? food.pictures[0].url : null}
                   header={food.name}
-                  meta={this.calculateDistance(food.cook.latitude, food.cook.longitude)}
+                  meta={
+                    <>
+                    <Icon name='point' size='small' />
+                   { this.calculateDistance(food.cook.latitude, food.cook.longitude)}
+                   </>
+                  }
                   description={food.description}
                   extra={extra(food.price)}
                   link

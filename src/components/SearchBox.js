@@ -112,6 +112,7 @@ class SearchBox extends Component {
         value={value}
         {...this.props}
         size='huge'
+        className='search-box-input'
       />
     )
   }

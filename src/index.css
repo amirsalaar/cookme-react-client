@@ -8,8 +8,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.hero-header {font-size: 4em; text-shadow: 1px 1px 3px red; color: #fff; text-align: center; text-transform: uppercase}
+.hero-header {font-size: 4em; text-shadow: 2px 2px 1px black; color: #01D0AF; text-align: center; text-transform: uppercase}
+
 .hero-tagline {font-size: 3em; text-shadow: 2px 2px #000; color: #fff; text-align: center;}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -58,7 +60,7 @@ header {
   width: 100%;
   height: 100%;
   z-index: -2;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 nav .ui.segment {background: transparent; box-shadow: none; border: none; }
@@ -155,4 +157,8 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
 
 .search .ui.input {
   width: 100%;
+}
+
+.search-box-input .ui.input>input {
+  border-radius: .28571429rem !important;
 }

@@ -3,6 +3,10 @@ import { Tab, Grid, Container, Segment, GridColumn } from 'semantic-ui-react';
 import SignUpCooks from './SignUpCooks';
 import SignUpCustomers from './SignUpCustomers';
 
+const styles = {
+  rootGrid: { justifyContent: 'center' }
+}
+
 export default function SignUpPage(props) {
   document.body.classList = ('sign-up-page');
 
@@ -29,8 +33,8 @@ export default function SignUpPage(props) {
   ]
 
   return (
-    <Grid className='sign-up' stackable centered verticalAlign='middle'>
-      <Grid.Column stretched textAlign='center' mobile={16} tablet={11} computer={11} largeScreen={7} verticalAlign='middle'>
+    <Grid className='sign-up' stackable verticalAlign='middle' style={styles.rootGrid} >
+      <Grid.Column stretched mobile={16} tablet={11} computer={11} largeScreen={7} verticalAlign='middle'>
         <Container>
           <Segment raised>
             <Tab panes={panes} />
