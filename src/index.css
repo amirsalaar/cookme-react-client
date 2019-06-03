@@ -39,6 +39,8 @@ header {
 
 .page.food {min-height: 90vh;}
 
+.page.checkout {min-height: 75vh}
+
 .sign-in, .sign-up {
   min-height: 90vh;
 }
