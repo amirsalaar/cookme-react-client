@@ -15,7 +15,7 @@ export default function Footer(props) {
     <Segment inverted={isInverted} style={styles.footerSegment}>
       <Container>
         <Grid divided inverted={isInverted} stackable>
-          <Grid.Row>
+          <Grid.Row centered>
             <Grid.Column width={3}>
               <Header inverted={isInverted} as='h3' content='About' />
               <List link inverted={isInverted}>
@@ -31,7 +31,7 @@ export default function Footer(props) {
                 <List.Item as='a'>FAQ</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={7}>
+            <Grid.Column width={4}>
               <Header as='h3' inverted={isInverted}>
                 CookMe in Social Media
               </Header>
