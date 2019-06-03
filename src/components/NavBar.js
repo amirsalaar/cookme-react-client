@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink, Link } from 'react-router-dom';
-import { Menu, Segment, Icon, Sticky, Header, Image, Label } from 'semantic-ui-react'
-import logo from '../assets/images/logo.PNG'
+import { Menu, Segment, Icon, Sticky, Label } from 'semantic-ui-react'
+import logo from '../assets/images/logo.PNG';
 import Session from '../api/session';
 import DashboardMenuItem from './DashboardMenuItem';
 

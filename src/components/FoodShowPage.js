@@ -8,6 +8,7 @@ import { GOOGLE_MAP } from '../config';
 import getDistance from '../modules/getDistance';
 import RatingsController from './RatingsController';
 import FoodIngredients from './FoodIngredients';
+import Footer from './Footer';
 
 const styles = {
   container: { width: '85%', marginTop: '2em' },
@@ -115,140 +116,143 @@ export default class FoodShowPage extends Component {
     };
 
     return (
-      <div className='page'>
-        <Container style={styles.container}  >
-          <Grid stackable centered >
+      <>
+        <div className='page food'>
+          <Container style={styles.container}  >
+            <Grid stackable centered >
 
-            <Grid.Column computer={13} tablet={12} >
-              <Grid stackable>
-                <Grid.Row >
+              <Grid.Column computer={13} tablet={12} >
+                <Grid stackable>
+                  <Grid.Row >
 
-                  <Grid.Column width={8} >
-                    <Card fluid  >
-                      <Image src={food.pictures.length > 0 ? food.pictures[0].url : null} />
-                    </Card>
+                    <Grid.Column width={8} >
+                      <Card fluid  >
+                        <Image src={food.pictures.length > 0 ? food.pictures[0].url : null} />
+                      </Card>
 
-                    <Segment>
-                      <Grid stackable>
-                        <Grid.Column width={16} style={styles.mapGrid}>
-                          <div style={styles.locationAddress}>
-                            <CardMeta className='location-pin'>
-                              <span>
-                                <Icon name='point' />
-                                {this.getAddress()}
-                              </span>
-                              <span style={styles.ditanceResult}>
-                                {this.calculateDistance(
-                                  cook.latitude, cook.longitude
-                                )}
-                              </span>
-                            </CardMeta>
-                          </div>
-                          <MapContainer
-                            isMarkerShown
-                            googleMapURL={GOOGLE_MAP}
-                            loadingElement={<div style={{ height: `100%` }} />}
-                            containerElement={<div style={{ height: `100%` }} />}
-                            mapElement={<div style={{ height: `100%` }} />}
-                            kitchen={{
-                              lat: cook.latitude,
-                              lng: cook.longitude,
-                              cookName: cook.full_name,
-                              phone: cook.phone_number
-                            }}
-                          />
-                        </Grid.Column>
-                        <Grid.Column width={16} style={styles.foodImageGrid}>
+                      <Segment>
+                        <Grid stackable>
+                          <Grid.Column width={16} style={styles.mapGrid}>
+                            <div style={styles.locationAddress}>
+                              <CardMeta className='location-pin'>
+                                <span>
+                                  <Icon name='point' />
+                                  {this.getAddress()}
+                                </span>
+                                <span style={styles.ditanceResult}>
+                                  {this.calculateDistance(
+                                    cook.latitude, cook.longitude
+                                  )}
+                                </span>
+                              </CardMeta>
+                            </div>
+                            <MapContainer
+                              isMarkerShown
+                              googleMapURL={GOOGLE_MAP}
+                              loadingElement={<div style={{ height: `100%` }} />}
+                              containerElement={<div style={{ height: `100%` }} />}
+                              mapElement={<div style={{ height: `100%` }} />}
+                              kitchen={{
+                                lat: cook.latitude,
+                                lng: cook.longitude,
+                                cookName: cook.full_name,
+                                phone: cook.phone_number
+                              }}
+                            />
+                          </Grid.Column>
+                          <Grid.Column width={16} style={styles.foodImageGrid}>
 
-                        </Grid.Column>
-
-                      </Grid>
-                    </Segment>
-
-                  </Grid.Column>
-
-                  <Grid.Column width={8} >
-                    <Card fluid>
-                      <Card.Content
-                        header={food.name}
-                        style={styles.foodName}
-                      />
-                      <Card.Content
-                        description={food.description}
-                        style={styles.descriptionCard}
-                      />
-                      <Card.Content>
-                        <FoodIngredients
-                          ingredients={food.ingredients}
-                        />
-                      </Card.Content>
-                      <Card.Content>
-                        <Grid columns='equal' centered stackable>
-
-                          <Grid.Row style={styles.quantityRow}>
-                            <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto', textAlign: 'center' }}>
-                              <Button.Group fluid icon basic size='large'>
-                                <Button onClick={() => this.handleQuantity('decrement')}>
-                                  <Icon name='minus' />
-                                </Button>
-                                <Button>
-                                  <Input type='text' value={this.state.quantity} transparent size='small' style={styles.quantityInput}>
-                                    <input style={{ textAlign: 'center' }} />
-                                  </Input>
-                                </Button>
-                                <Button onClick={(add = 'increment') => this.handleQuantity(add)}>
-                                  <Icon name='add' />
-                                </Button>
-                              </Button.Group>
-                            </Grid.Column>
-                          </Grid.Row>
-
-                          <Grid.Row style={styles.shoppingButtonRow}>
-                            <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto' }}>
-                              <Button
-                                fluid positive
-                                animated='vertical'
-                                size='large'
-                                onClick={this.handleAddToCart}
-                              >
-                                <Button.Content hidden>
-                                  <Icon name='add to cart' style={styles.addToCartIcon} />
-                                </Button.Content>
-                                <Button.Content visible>
-                                  Add to Cart
-                                </Button.Content>
-                              </Button>
-                            </Grid.Column>
-                          </Grid.Row>
+                          </Grid.Column>
 
                         </Grid>
-                      </Card.Content>
-                      <Card.Content extra style={styles.cardFooter}>
-                        <span>
-                          <Icon name='dollar' />
-                          {food.price}
-                        </span>
-                        <span style={styles.ratingContainer}>
-                          <RatingsController
-                            currentRate={food.ratings}
+                      </Segment>
+
+                    </Grid.Column>
+
+                    <Grid.Column width={8} >
+                      <Card fluid>
+                        <Card.Content
+                          header={food.name}
+                          style={styles.foodName}
+                        />
+                        <Card.Content
+                          description={food.description}
+                          style={styles.descriptionCard}
+                        />
+                        <Card.Content>
+                          <FoodIngredients
+                            ingredients={food.ingredients}
                           />
-                        </span>
-                      </Card.Content>
-                    </Card>
-                  </Grid.Column>
+                        </Card.Content>
+                        <Card.Content>
+                          <Grid columns='equal' centered stackable>
 
+                            <Grid.Row style={styles.quantityRow}>
+                              <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto', textAlign: 'center' }}>
+                                <Button.Group fluid icon basic size='large'>
+                                  <Button onClick={() => this.handleQuantity('decrement')}>
+                                    <Icon name='minus' />
+                                  </Button>
+                                  <Button>
+                                    <Input type='text' value={this.state.quantity} transparent size='small' style={styles.quantityInput}>
+                                      <input style={{ textAlign: 'center' }} />
+                                    </Input>
+                                  </Button>
+                                  <Button onClick={(add = 'increment') => this.handleQuantity(add)}>
+                                    <Icon name='add' />
+                                  </Button>
+                                </Button.Group>
+                              </Grid.Column>
+                            </Grid.Row>
+
+                            <Grid.Row style={styles.shoppingButtonRow}>
+                              <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto' }}>
+                                <Button
+                                  fluid positive
+                                  animated='vertical'
+                                  size='large'
+                                  onClick={this.handleAddToCart}
+                                >
+                                  <Button.Content hidden>
+                                    <Icon name='add to cart' style={styles.addToCartIcon} />
+                                  </Button.Content>
+                                  <Button.Content visible>
+                                    Add to Cart
+                                </Button.Content>
+                                </Button>
+                              </Grid.Column>
+                            </Grid.Row>
+
+                          </Grid>
+                        </Card.Content>
+                        <Card.Content extra style={styles.cardFooter}>
+                          <span>
+                            <Icon name='dollar' />
+                            {food.price}
+                          </span>
+                          <span style={styles.ratingContainer}>
+                            <RatingsController
+                              currentRate={food.ratings}
+                            />
+                          </span>
+                        </Card.Content>
+                      </Card>
+                    </Grid.Column>
+
+                  </Grid.Row>
+                </Grid>
+              </Grid.Column>
+
+              <Grid.Column computer={3} tablet={4} style={styles.sidebarContainer}>
+                <Grid.Row>
+                  <CheckoutSidebar cartItems={this.props.cartDetails} />
                 </Grid.Row>
-              </Grid>
-            </Grid.Column>
-
-            <Grid.Column computer={3} tablet={4} style={styles.sidebarContainer}>
-              <Grid.Row>
-                <CheckoutSidebar cartItems={this.props.cartDetails} />
-              </Grid.Row>
-            </Grid.Column>
-          </Grid>
-        </Container>
-      </div>
+              </Grid.Column>
+            </Grid>
+          </Container>
+        </div>
+        <Footer isInverted={true} />
+      </>
     )
   }
 }

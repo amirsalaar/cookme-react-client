@@ -37,6 +37,8 @@ header {
   width: 100%;
 }
 
+.page.food {min-height: 90vh;}
+
 .sign-in, .sign-up {
   min-height: 90vh;
 }
@@ -163,3 +165,9 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
 .search-box-input .ui.input>input {
   border-radius: .28571429rem !important;
 }
+
+.social-links .ui.circular.button, 
+.social-links .ui.button 
+{ margin-right: 0.5em; margin-left: 0.5em; }
+
+/* .ui.instagram.button { background-color: #D70F64 !important;} */
