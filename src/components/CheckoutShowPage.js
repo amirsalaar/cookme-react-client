@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment, List, Icon, ListContent, Button, Header, Table, ListItem, Dimmer, Loader } from 'semantic-ui-react';
+import { Grid, Container, Segment, List, Icon, Button, Header, Table,  Dimmer, Loader } from 'semantic-ui-react';
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';

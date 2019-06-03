@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tab, Grid, Container, Segment, GridColumn } from 'semantic-ui-react';
+import { Tab, Grid, Container, Segment } from 'semantic-ui-react';
 import SignUpCooks from './SignUpCooks';
 import SignUpCustomers from './SignUpCustomers';
 
@@ -33,8 +33,20 @@ export default function SignUpPage(props) {
   ]
 
   return (
-    <Grid className='sign-up' stackable verticalAlign='middle' style={styles.rootGrid} >
-      <Grid.Column stretched mobile={16} tablet={11} computer={11} largeScreen={7} verticalAlign='middle'>
+    <Grid
+      className='sign-up'
+      stackable
+      verticalAlign='middle'
+      style={styles.rootGrid}
+    >
+      <Grid.Column
+        stretched
+        mobile={16}
+        tablet={11}
+        computer={11}
+        largeScreen={7}
+        verticalAlign='middle'
+      >
         <Container>
           <Segment raised>
             <Tab panes={panes} />

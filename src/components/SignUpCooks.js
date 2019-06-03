@@ -2,8 +2,6 @@ import React from 'react'
 import { User } from '../api/user';
 import { Icon, Button, Form, Input, Label } from 'semantic-ui-react';
 import { SignUpPagesStyles as style } from '../styles/SignUpPagesStyle';
-import { BASE_URL } from '../config';
-
 export default function SignUpCooks(props) {
   const { onSignUp } = props;
 

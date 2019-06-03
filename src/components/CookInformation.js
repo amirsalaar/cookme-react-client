@@ -13,11 +13,13 @@ const styles = {
 
 function CookInformation(props) {
   const { cook, address, calculatedDistance } = props;
-
-  const redirectToFood = (id) => {
-    // props.history.goBack()
-  };
-
+  
+  const handleTableRowClick = (event) => {
+    event.preventDefault();
+    const { currentTarget } = event
+    const id = currentTarget.getAttribute('data-id')
+    console.log(props.history)
+  }
   const panes = [
     {
       menuItem: { key: 'location', icon: 'map', content: "Kitchen's Location" },
@@ -81,14 +83,16 @@ function CookInformation(props) {
                       return (
                         <Table.Row key={food.id}>
                           <Table.Cell>
-                            <Link
-                              exact to={`/foods/${food.id}`}
-                              // onClick={redirectToFood(food.id)}
-                              onClick={<Redirect to={`/foods/${food.id}`} />
-                              }
+                            <div
+                              data-id={food.id}
+                              // onClick={event => handleTableRowClick(event)}
                             >
-                              {food.name}
-                            </Link>
+                              <Link
+                                to={`/foods/${food.id}`}
+                              >
+                                {food.name}
+                              </Link>
+                            </div>
                           </Table.Cell>
                           <Table.Cell textAlign='right'><Icon name='dollar' />{food.price}</Table.Cell>
                         </Table.Row>

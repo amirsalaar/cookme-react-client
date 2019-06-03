@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, GridRow, Header } from 'semantic-ui-react';
+import { Grid, GridRow, } from 'semantic-ui-react';
 import SearchBox from './SearchBox';
 
 const styles = {

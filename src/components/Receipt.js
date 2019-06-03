@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, List, ListContent, Icon, Grid, Button, Header, Message } from 'semantic-ui-react';
+import { Container, List, ListContent, Icon, Grid, Header, Message } from 'semantic-ui-react';
 import Moment from 'react-moment';
 
 const styles = {

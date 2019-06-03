@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, CardMeta, Segment, Rating, Radio, Form, TextArea, Header } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input,  Segment, Radio, Form, TextArea, Header } from 'semantic-ui-react';
 import CheckoutSidebar from './CheckoutSidebar';
 import Food from '../api/food';
 import Session from '../api/session';
-import MapContainer from './MapContainer';
-import { GOOGLE_MAP } from '../config';
 import getDistance from '../modules/getDistance';
 import RatingsController from './RatingsController';
 import FoodIngredients from './FoodIngredients';
 import Footer from './Footer';
 import CookInformation from './CookInformation';
-import { BrowserRouter, Route } from 'react-router-dom';
 
 const styles = {
   container: { width: '90%', marginTop: '1em', marginBottom: '1em', paddingTop: '2em' },
