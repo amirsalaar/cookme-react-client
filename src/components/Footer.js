@@ -35,7 +35,7 @@ export default function Footer(props) {
               <Header as='h3' inverted={isInverted}>
                 CookMe in Social Media
               </Header>
-              <div class='social-links'>
+              <div className='social-links'>
                 <Button circular color='facebook' icon='facebook' />
                 <Button circular color='twitter' icon='twitter' />
                 <Button circular color='linkedin' icon='linkedin' />

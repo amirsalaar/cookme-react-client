@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleMap, Marker, withScriptjs, withGoogleMap, InfoWindow } from "react-google-maps";
-import { Header, Icon, HeaderContent } from 'semantic-ui-react';
+import { Header, Icon, } from 'semantic-ui-react';
 
 
 class MapContainer extends Component {
@@ -45,7 +45,6 @@ class MapContainer extends Component {
 
 
   render() {
-    console.log('kitchen', this.props.kitchen)
     const { lat, lng } = this.state.kitchen;
     const { selectedKitchen, kitchen } = this.state;
     return (

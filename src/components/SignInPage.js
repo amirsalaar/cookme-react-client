@@ -44,7 +44,7 @@ export default function SignInPage(props) {
             <Form onSubmit={handleSubmit}>
               <Form.Field required >
                 <Input type='email' name='email' iconPosition='left' placeholder='E-mail Address' size={style.inputSize} >
-                  <Icon name='user' />
+                  <Icon name='mail' />
                   <input />
                 </Input>
               </Form.Field>
@@ -58,7 +58,7 @@ export default function SignInPage(props) {
             </Form>
           </Segment>
           <Message >
-            New user? <NavLink to='/sign-up'>Register</NavLink>
+            <NavLink to='/sign-up'>Register</NavLink> / <NavLink to='/sign-up'>Forgot Password?</NavLink>
           </Message>
         </Segment>
       </Grid.Column>
