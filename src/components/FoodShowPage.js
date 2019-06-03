@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, CardMeta, Segment, Rating } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, CardMeta, Segment, Rating, Radio, Form, TextArea, Header } from 'semantic-ui-react';
 import CheckoutSidebar from './CheckoutSidebar';
 import Food from '../api/food';
 import Session from '../api/session';
@@ -11,7 +11,7 @@ import FoodIngredients from './FoodIngredients';
 import Footer from './Footer';
 
 const styles = {
-  container: { width: '85%', marginTop: '2em' },
+  container: { width: '85%', marginTop: '1em', marginBottom: '1em', paddingTop: '2em' },
   foodName: { fontSize: '1.5em' },
   descriptionCard: { minHeight: 200, fontSize: '1.2em', lineHeight: '1.4em' },
   imageCard: { minHeight: 200, },
@@ -26,7 +26,10 @@ const styles = {
   sidebarContainer: { paddingRight: 0, paddingLeft: 0 },
   mapGrid: { width: '100%', height: '20vh' },
   locationAddress: { padding: '1em 0em', fontSize: '1.1em' },
-  ditanceResult: { marginLeft: 'auto' }
+  ditanceResult: { marginLeft: 'auto' },
+  specialInstruction: { display: 'flex', fontSize: '1.15em', },
+  radioButton: { marginRight: '1em' },
+  isntructionBox: { minHeight: 30 },
 };
 
 export default class FoodShowPage extends Component {
@@ -39,7 +42,8 @@ export default class FoodShowPage extends Component {
       loading: true,
       quantity: 1,
       cartDetails: [],
-      currentLocation: currentLocation
+      currentLocation: currentLocation,
+      isSpecial: false,
     };
   };
 
@@ -102,9 +106,13 @@ export default class FoodShowPage extends Component {
     return 'Your location is not available!'
   };
 
+  handleTogglingInstruction = () => {
+    this.setState({ isSpecial: !this.state.isSpecial })
+  };
+
   render() {
     document.body.className = '';
-    const { food, loading, cook } = this.state;
+    const { food, loading, cook, isSpecial } = this.state;
     if (loading) {
       return (
         <Grid>
@@ -180,9 +188,35 @@ export default class FoodShowPage extends Component {
                           style={styles.descriptionCard}
                         />
                         <Card.Content>
+                          <Header as='h4' content='Ingredients' />
                           <FoodIngredients
                             ingredients={food.ingredients}
                           />
+                        </Card.Content>
+                        <Card.Content>
+                          <div style={styles.specialInstruction}>
+                            <span style={styles.radioButton}>
+                              <Radio
+                                toggle
+                                onClick={this.handleTogglingInstruction}
+                              />
+                            </span>
+                            <span>
+                              Special note and instruction for cook?
+                            </span>
+                          </div>
+                          {isSpecial ? (
+                            <div style={{ marginTop: '1em' }}>
+                              <Form>
+                                <TextArea
+                                  placeholder='Special Instruction'
+                                  style={styles.isntructionBox}
+                                  rows={5}
+                                />
+                              </Form>
+                            </div>
+                          ) : (null)}
+
                         </Card.Content>
                         <Card.Content>
                           <Grid columns='equal' centered stackable>
