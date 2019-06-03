@@ -76,7 +76,7 @@ class MapContainer extends Component {
             <div className='marker'>
               <Header as='h5'>
                 <Icon name='food' />
-                {selectedKitchen}
+                {selectedKitchen + "'s Kitchen"}
               </Header>
               <div style={{ marginTop: 10 }}>
                 <Icon name='clock outline' size='small' />

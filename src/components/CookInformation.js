@@ -1,7 +1,8 @@
 import React from 'react'
-import { Header, Segment, Grid, Tab, Card, Icon } from 'semantic-ui-react';
+import { Header, Grid, Tab, Card, Icon, Image, Container, Table } from 'semantic-ui-react';
 import MapContainer from './MapContainer';
 import { GOOGLE_MAP } from '../config';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 
 const styles = {
   mapGrid: { width: '100%', height: '30vh' },
@@ -10,8 +11,13 @@ const styles = {
   kitchenInfo: { minHeight: '30vh' }
 }
 
-export default function CookInformation(props) {
-  const { cook, kitchen, address, calculatedDistance } = props;
+function CookInformation(props) {
+  const { cook, address, calculatedDistance } = props;
+
+  const redirectToFood = (id) => {
+    // props.history.goBack()
+  };
+
   const panes = [
     {
       menuItem: { key: 'location', icon: 'map', content: "Kitchen's Location" },
@@ -58,12 +64,42 @@ export default function CookInformation(props) {
       menuItem: { key: 'information', icon: 'info circle', content: "Kitchen's Information" },
       render: () => {
         return (
-          <Tab.Pane 
-          className='kitchen-info-tab'
-          style={styles.kitchenInfo}
-
+          <Tab.Pane
+            className='kitchen-info-tab'
+            style={styles.kitchenInfo}
           >
+            <Container>
+              <Header as='h2'>
+                <Image circular src={cook.avatar.url} /> {cook.full_name}
+              </Header>
+              <Container style={{ padding: '2em' }}>
 
+                <Header as='h4' content='Other Foods' />
+                <Table basic='very'>
+                  <Table.Body>
+                    {cook.foods.map(food => {
+                      return (
+                        <Table.Row key={food.id}>
+                          <Table.Cell>
+                            <Link
+                              exact to={`/foods/${food.id}`}
+                              // onClick={redirectToFood(food.id)}
+                              onClick={<Redirect to={`/foods/${food.id}`} />
+                              }
+                            >
+                              {food.name}
+                            </Link>
+                          </Table.Cell>
+                          <Table.Cell textAlign='right'><Icon name='dollar' />{food.price}</Table.Cell>
+                        </Table.Row>
+                      )
+                    })}
+
+                  </Table.Body>
+                </Table>
+
+              </Container>
+            </Container>
           </Tab.Pane>
         )
       }
@@ -85,3 +121,5 @@ export default function CookInformation(props) {
     </Grid>
   )
 }
+
+export default withRouter(CookInformation)

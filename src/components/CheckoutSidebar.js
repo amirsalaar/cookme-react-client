@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button, Icon, List } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 
-const classes = {
+const styles = {
   sidebarCardHeader: { fontSize: '1.5em', marginBottom: '1em' },
   listQuantity: { marginRight: 5, marginLeft: 3, fontWeight: 'bold' },
   itemList: { fontSize: '1.15em' },
@@ -50,21 +50,21 @@ class CheckoutSidebar extends Component {
     return (
       <Card centered fluid>
         <Card.Content>
-          <Card.Header style={classes.sidebarCardHeader}>Your order</Card.Header>
+          <Card.Header style={styles.sidebarCardHeader}>Your order</Card.Header>
           <Card.Description>
             <List>
               {cartItems.map((cartItem, index) => {
                 return (
                   <List.Item
                     key={index}
-                    style={classes.itemList}
+                    style={styles.itemList}
                   >
                     <List.Content floated='left'>
                       {/* <span><Icon name='minus' size='tiny' /></span> */}
-                      <span style={classes.listQuantity}>{cartItem.quantity}</span>
+                      <span style={styles.listQuantity}>{cartItem.quantity}</span>
                       {/* <span><Icon name='plus' size='tiny' /></span> */}
                     </List.Content>
-                    <List.Content style={classes.itemName}>
+                    <List.Content style={styles.itemName}>
                       {cartItem.food.name}
                       <span style={{ marginLeft: 'auto', padding: 0 }}><Icon name='dollar' size='small' />{cartItem.food.price * cartItem.quantity}
                       </span>
@@ -77,7 +77,7 @@ class CheckoutSidebar extends Component {
         </Card.Content>
 
         <Card.Content >
-          <List style={classes.totalList}>
+          <List style={styles.totalList}>
             <List.Item>
               <List.Content content='Subtotal' floated='left' />
               <List.Content floated='right'><Icon name='dollar' size='small' />{this.state.subTotal}</List.Content>

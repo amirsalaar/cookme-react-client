@@ -10,6 +10,7 @@ import RatingsController from './RatingsController';
 import FoodIngredients from './FoodIngredients';
 import Footer from './Footer';
 import CookInformation from './CookInformation';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 const styles = {
   container: { width: '85%', marginTop: '1em', marginBottom: '1em', paddingTop: '2em' },
@@ -174,13 +175,13 @@ export default class FoodShowPage extends Component {
                           </Grid.Column>
 
                         </Grid> */}
-                      <CookInformation
-                        cook={cook}
-                        address={this.getAddress()}
-                        calculatedDistance={this.calculateDistance(
-                          cook.latitude, cook.longitude
-                        )}
-                      />
+                        <CookInformation
+                          cook={cook}
+                          address={this.getAddress()}
+                          calculatedDistance={this.calculateDistance(
+                            cook.latitude, cook.longitude
+                          )}
+                        />
                       </Segment>
 
                     </Grid.Column>
