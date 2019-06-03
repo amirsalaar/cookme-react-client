@@ -193,6 +193,12 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
   }
 
   .hero-header {text-align: left;}
+
+  .food-index .ui.centered.grid>.column:not(.aligned):not(.justified):not(.row), 
+  .food-index .ui.centered.grid>.row>.column:not(.aligned):not(.justified), 
+  .food-index .ui.grid .centered.row>.column:not(.aligned):not(.justified) {
+    height: 400px;
+  }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1130px) {
@@ -209,6 +215,11 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
             column-count: 4;
   }
 
+}
+
+.food-item .content > * .description,
+.food-item .content > .description {
+  padding-top: 0.5em;
 }
 
 .ui.segment .kitchen-info-tab,

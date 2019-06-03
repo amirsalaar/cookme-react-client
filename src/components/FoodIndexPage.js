@@ -31,7 +31,7 @@ export default class FoodIndexPage extends Component {
         foods, loading: false
       })
     })
-    .catch(err => this.setState({ loading: false }));
+      .catch(err => this.setState({ loading: false }));
   };
 
   calculateDistance = (lat, lng) => {
@@ -79,9 +79,18 @@ export default class FoodIndexPage extends Component {
       <>
         <div style={{ padding: '2em' }} >
           <Container className='food-index'>
-            <Grid columns={3} className='masonry'>
+            <Grid
+              // columns={3}
+              stackable
+              centered
+            >
               {foods.map(food => (
-                <Grid.Column key={food.id}>
+                <Grid.Column
+                  key={food.id}
+                  mobile={16}
+                  tablet={5}
+                  computer={4}
+                >
                   <FoodItem
                     image={food.pictures.length > 0 ? food.pictures[0].url : null}
                     header={food.name}
