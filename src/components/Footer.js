@@ -27,7 +27,7 @@ export default function Footer(props) {
             <Grid.Column width={3}>
               <Header inverted={isInverted} as='h3' content='Services' />
               <List link inverted={isInverted}>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
+                <List.Item as='a'>Required Certifications</List.Item>
                 <List.Item as='a'>FAQ</List.Item>
               </List>
             </Grid.Column>

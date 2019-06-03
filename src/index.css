@@ -121,45 +121,6 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
   display: block;
 }
 
-.grid.masonry {
-  display: block;
-}
-
-.home-grid-row {
-  justify-content: center ;
-}
-
-@media only screen and (min-width: 768px) {
-  .grid.masonry {
-    -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
-    -webkit-column-gap: 0;
-       -moz-column-gap: 0;
-            column-gap: 0;
-  }
-
-  .ui.doubling.grid.masonry[class*="three column"] > .column {
-    width: 100% !important;
-  }
-
-  .home-grid-row {
-    justify-content: start !important;
-    margin-left: 2rem;
-  }
-
-  .hero-header {text-align: left;}
-}
-
-@media only screen and (min-width: 992px) {
-  .grid.masonry {
-    -webkit-column-count: 4;
-       -moz-column-count: 4;
-            column-count: 4;
-  }
-
-}
-
 .search .ui.input {
   width: 100%;
 }
@@ -173,3 +134,74 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
 { margin-right: 0.5em; margin-left: 0.5em; }
 
 /* .ui.instagram.button { background-color: #D70F64 !important;} */
+
+.home-grid-row {
+  justify-content: center ;
+}
+
+.grid.masonry {
+  display: block;
+}
+
+@media only screen and (max-width: 550px) {
+  .grid.masonry {
+    -webkit-column-count: 1;
+       -moz-column-count: 1;
+            column-count: 1;
+    -webkit-column-gap: 0;
+       -moz-column-gap: 0;
+            column-gap: 0;
+  }
+
+  .ui.grid.masonry[class*="three column"] > .column {
+    width: 100% !important;
+  }
+}
+
+@media only screen  and (min-width: 551px) and (max-width: 767px) {
+  .grid.masonry {
+    -webkit-column-count: 2;
+       -moz-column-count: 2;
+            column-count: 2;
+    -webkit-column-gap: 0;
+       -moz-column-gap: 0;
+            column-gap: 0;
+  }
+
+  .ui.grid.masonry[class*="three column"] > .column {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .grid.masonry {
+    -webkit-column-count: 3;
+       -moz-column-count: 3;
+            column-count: 3;
+    -webkit-column-gap: 0;
+       -moz-column-gap: 0;
+            column-gap: 0;
+  }
+
+  .ui.grid.masonry[class*="three column"] > .column {
+    width: 100% !important;
+  }
+
+  .home-grid-row {
+    justify-content: start !important;
+    margin-left: 2rem;
+  }
+
+  .hero-header {text-align: left;}
+}
+
+
+@media only screen and (min-width: 992px) {
+  .grid.masonry {
+    -webkit-column-count: 4;
+       -moz-column-count: 4;
+            column-count: 4;
+  }
+
+}
+

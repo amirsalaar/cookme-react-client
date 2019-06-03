@@ -77,7 +77,7 @@ export default class FoodIndexPage extends Component {
     return (
       <div style={{ padding: 20 }} >
         <Container className='food-index'>
-          <Grid columns={3} doubling stackable className='masonry'>
+          <Grid columns={3} className='masonry'>
             {foods.map(food => (
               <Grid.Column key={food.id}>
                 <FoodItem
