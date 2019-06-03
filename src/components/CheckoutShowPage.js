@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment, List, Icon, ListContent, Button, Header, Table, ListItem } from 'semantic-ui-react';
+import { Grid, Container, Segment, List, Icon, ListContent, Button, Header, Table, ListItem, Dimmer, Loader } from 'semantic-ui-react';
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';
@@ -27,7 +27,8 @@ export default class CheckoutShowPage extends Component {
     isConfirmed: false,
     // isPaid: false,
     stage: 'Confirmation',
-    orderID: null
+    orderID: null,
+    loading: true,
   };
 
   handleClick = (e, { title }) => this.setState({ active: title })
@@ -53,6 +54,7 @@ export default class CheckoutShowPage extends Component {
       cartDetails: this.props.cartDetails,
       stage: 'Confirmation',
       currentUser: this.props.currentUser,
+      loading: false
     }, () => this.calculateTotalPrice());
   };
 
@@ -77,16 +79,31 @@ export default class CheckoutShowPage extends Component {
       isConfirmed,
       stage,
       orderID,
-      currentUser
+      currentUser,
+      loading,
     } = this.state;
+
     let total = (parseFloat(this.state.subTotal) + parseFloat(this.state.tax)).toFixed(2);
+
     const receiptDetails = {
       subTotal: this.state.subTotal,
       tax: this.state.tax,
       total,
       orderID
     };
+
+    if (loading) {
+      return (
+        <Grid>
+          <Dimmer active inverted>
+            <Loader size='large'>Loading</Loader>
+          </Dimmer>
+        </Grid>
+      )
+    };
+
     return (
+
       <>
         <div className='page checkout'>
           <Container mobile={16} tablet={10} computer={9}>
@@ -94,7 +111,7 @@ export default class CheckoutShowPage extends Component {
               stackable
               centered
               verticalAlign='center'
-              style={{paddingTop: '5em'}}
+              style={{ paddingTop: '5em' }}
             >
 
               <Grid.Row centered>
