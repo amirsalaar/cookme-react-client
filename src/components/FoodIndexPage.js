@@ -3,6 +3,7 @@ import { Grid, Icon, Container, Dimmer, Loader } from 'semantic-ui-react';
 import FoodItem from './FoodItem';
 import Food from '../api/food';
 import getDistance from '../modules/getDistance';
+import Footer from './Footer';
 // import { getDistance, convertDistance } from 'geolib';
 
 const styles = {
@@ -27,10 +28,10 @@ export default class FoodIndexPage extends Component {
   fetchFoods = () => {
     Food.all().then(foods => {
       this.setState({
-        foods,
+        foods, loading: false
       })
-    });
-    this.setState({ loading: false })
+    })
+    .catch(err => this.setState({ loading: false }));
   };
 
   calculateDistance = (lat, lng) => {
@@ -75,31 +76,34 @@ export default class FoodIndexPage extends Component {
     };
 
     return (
-      <div style={{ padding: 20 }} >
-        <Container className='food-index'>
-          <Grid columns={3} className='masonry'>
-            {foods.map(food => (
-              <Grid.Column key={food.id}>
-                <FoodItem
-                  image={food.pictures.length > 0 ? food.pictures[0].url : null}
-                  header={food.name}
-                  meta={
-                    <>
-                      <Icon name='point' size='small' />
-                      {this.calculateDistance(food.cook.latitude, food.cook.longitude)}
-                    </>
-                  }
-                  description={food.description}
-                  extra={extra(food.price)}
-                  link
-                  onClick={this.handleFoodItemClick}
-                  foodId={food.id}
-                />
-              </Grid.Column>
-            ))}
-          </Grid>
-        </Container>
-      </div>
+      <>
+        <div style={{ padding: '2em' }} >
+          <Container className='food-index'>
+            <Grid columns={3} className='masonry'>
+              {foods.map(food => (
+                <Grid.Column key={food.id}>
+                  <FoodItem
+                    image={food.pictures.length > 0 ? food.pictures[0].url : null}
+                    header={food.name}
+                    meta={
+                      <>
+                        <Icon name='point' size='small' />
+                        {this.calculateDistance(food.cook.latitude, food.cook.longitude)}
+                      </>
+                    }
+                    description={food.description}
+                    extra={extra(food.price)}
+                    link
+                    onClick={this.handleFoodItemClick}
+                    foodId={food.id}
+                  />
+                </Grid.Column>
+              ))}
+            </Grid>
+          </Container>
+        </div>
+        <Footer isInverted={true} />
+      </>
     );
   };
 };
