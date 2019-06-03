@@ -13,14 +13,14 @@ import CookInformation from './CookInformation';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 const styles = {
-  container: { width: '85%', marginTop: '1em', marginBottom: '1em', paddingTop: '2em' },
+  container: { width: '90%', marginTop: '1em', marginBottom: '1em', paddingTop: '2em' },
   foodName: { fontSize: '1.5em' },
   descriptionCard: { minHeight: 200, fontSize: '1.2em', lineHeight: '1.4em' },
   imageCard: { minHeight: 200, },
   shoppingButtonRow: { paddingTop: 0 },
   shoppingCard: { border: 'none', boxShadow: 'none' },
   addToCartIcon: { fontSize: '1.5em' },
-  quantityInput: { width: 50, margin: 'auto', textAlign: 'center' },
+  quantityInput: { width: 20, margin: 'auto', textAlign: 'center' },
   quantityRow: { paddingBottom: 10 },
   cardFooter: { color: 'teal', fontSize: '1.2em', display: 'flex' },
   ratingContainer: { marginLeft: 'auto' },
@@ -141,40 +141,6 @@ export default class FoodShowPage extends Component {
                       </Card>
 
                       <Segment>
-                        {/* <Grid stackable>
-                          <Grid.Column width={16} style={styles.mapGrid}>
-                            <div style={styles.locationAddress}>
-                              <CardMeta className='location-pin'>
-                                <span>
-                                  <Icon name='point' />
-                                  {this.getAddress()}
-                                </span>
-                                <span style={styles.ditanceResult}>
-                                  {this.calculateDistance(
-                                    cook.latitude, cook.longitude
-                                  )}
-                                </span>
-                              </CardMeta>
-                            </div>
-                            <MapContainer
-                              isMarkerShown
-                              googleMapURL={GOOGLE_MAP}
-                              loadingElement={<div style={{ height: `100%` }} />}
-                              containerElement={<div style={{ height: `100%` }} />}
-                              mapElement={<div style={{ height: `100%` }} />}
-                              kitchen={{
-                                lat: cook.latitude,
-                                lng: cook.longitude,
-                                cookName: cook.full_name,
-                                phone: cook.phone_number
-                              }}
-                            />
-                          </Grid.Column>
-                          <Grid.Column width={16} style={styles.foodImageGrid}>
-
-                          </Grid.Column>
-
-                        </Grid> */}
                         <CookInformation
                           cook={cook}
                           address={this.getAddress()}

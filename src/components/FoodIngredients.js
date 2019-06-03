@@ -15,7 +15,6 @@ export default function FoodIngredients(props) {
           <Label
             key={ingredient.id}
             basic
-            size='large'
             style={styles.label}
           >
             {ingredient.name}

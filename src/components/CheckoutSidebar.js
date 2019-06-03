@@ -5,9 +5,9 @@ import { withRouter } from 'react-router-dom';
 const styles = {
   sidebarCardHeader: { fontSize: '1.5em', marginBottom: '1em' },
   listQuantity: { marginRight: 5, marginLeft: 3, fontWeight: 'bold' },
-  itemList: { fontSize: '1.15em' },
+  itemList: { fontSize: '1em' },
   itemName: { display: 'flex', fontSize: '1em', },
-  totalList: { fontSize: '1.15em' },
+  totalList: { fontSize: '1em' },
 };
 
 class CheckoutSidebar extends Component {
