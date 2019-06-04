@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Icon, Container, Dimmer, Loader } from 'semantic-ui-react';
+import { Grid, Icon, Container, Dimmer, Loader, Label } from 'semantic-ui-react';
 import FoodItem from './FoodItem';
 import Food from '../api/food';
 import getDistance from '../modules/getDistance';
@@ -56,11 +56,20 @@ export default class FoodIndexPage extends Component {
   render() {
     document.body.classList = '';
     const { foods, loading } = this.state;
-    const extra = (price) => (
+    const extra = (price, sale_price) => (
       <>
         <div style={styles.price}>
-          <Icon name='dollar' />
-          {price}
+          {parseFloat(sale_price) !== 0 ? (
+            <>
+            <span className='cross'>
+            <Icon name='dollar' />{price}
+            </span>
+            <span>
+              <Icon name='dollar' />
+              {sale_price}
+            </span>
+            </>
+          ) : price}
         </div>
       </>
     );
@@ -101,7 +110,22 @@ export default class FoodIndexPage extends Component {
                       </>
                     }
                     description={food.description}
-                    extra={extra(food.price)}
+                    extra={
+                      <div style={{ display: 'flex', }}>
+                        <span>{extra(food.price, food.sale_price)}</span>
+                        {food.sale_price && parseFloat(food.sale_price) !== 0 ? (
+                          <span
+                            style={{ marginLeft: 'auto' }}
+                          >
+                            <Label
+                              color='red' corner='right' icon='percent'
+                            >
+                            </Label>
+                          </span>
+
+                        ) : null}
+                      </div>
+                    }
                     link
                     onClick={this.handleFoodItemClick}
                     foodId={food.id}

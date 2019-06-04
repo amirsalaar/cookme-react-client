@@ -232,3 +232,31 @@ nav .ui.menu {background: rgba(255,255,255,0.8)};
 
 }
 
+.cross {
+  position: relative;
+  display: inline-block;
+  font-size: 0.85em;
+  color: grey
+}
+
+.cross::before {
+  content: '';
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 45%;
+  border-bottom: 1px solid;
+  -webkit-transform: skewY(-10deg);
+  transform: skewY(-10deg);
+}
+
+.cross::after {
+  content: '';
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 55%;
+  border-bottom: 1px solid;
+  -webkit-transform: skewY(-10deg);
+  transform: skewY(-10deg);
+}
