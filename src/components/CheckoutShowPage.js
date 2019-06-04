@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Container, Segment, List, Icon, Button, Header, Table,  Dimmer, Loader } from 'semantic-ui-react';
+import { Grid, Container, Segment, List, Icon, Button, Header, Table, Dimmer, Loader } from 'semantic-ui-react';
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';
 import { Order } from '../api/order';
 import Receipt from './Receipt';
 import Footer from './Footer';
+import isOnSale from '../modules/isOnSale';
 
 const styles = {
   itemsContainer: { width: '60%', marginBottom: '2em', marginTop: '2em' },
@@ -37,7 +38,8 @@ export default class CheckoutShowPage extends Component {
     let subTotal = 0;
     if (this.state.cartDetails.length > 0) {
       this.state.cartDetails.forEach(cartItem => {
-        subTotal += cartItem.food.price * cartItem.quantity;
+        let price = isOnSale(cartItem.food.price, cartItem.food.sale_price)
+        subTotal += price * cartItem.quantity;
       });
       return this.setState({ subTotal: subTotal.toFixed(2), tax: (subTotal * 0.12).toFixed(2) })
     };

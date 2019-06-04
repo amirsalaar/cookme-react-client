@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input,  Segment, Radio, Form, TextArea, Header } from 'semantic-ui-react';
+import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, Segment, Radio, Form, TextArea, Header } from 'semantic-ui-react';
 import CheckoutSidebar from './CheckoutSidebar';
 import Food from '../api/food';
 import Session from '../api/session';
@@ -10,7 +10,7 @@ import Footer from './Footer';
 import CookInformation from './CookInformation';
 
 const styles = {
-  container: { width: '90%', marginTop: '1em', marginBottom: '1em', paddingTop: '2em' },
+  container: { width: '90%', marginTop: '2em', marginBottom: '2em' },
   foodName: { fontSize: '1.5em' },
   descriptionCard: { minHeight: 200, fontSize: '1.2em', lineHeight: '1.4em' },
   imageCard: { minHeight: 200, },
@@ -29,6 +29,7 @@ const styles = {
   specialInstruction: { display: 'flex', fontSize: '1.15em', },
   radioButton: { marginRight: '1em' },
   isntructionBox: { minHeight: 30 },
+
 };
 
 export default class FoodShowPage extends PureComponent {
@@ -52,7 +53,7 @@ export default class FoodShowPage extends PureComponent {
   };
 
   componentDidUpdate = (prevProps) => {
-    if(this.props.match.params.id !== prevProps.match.params.id ) {
+    if (this.props.match.params.id !== prevProps.match.params.id) {
       this.fetchFood(this.props.match.params.id);
     };
   };
@@ -194,11 +195,9 @@ export default class FoodShowPage extends PureComponent {
                               </Form>
                             </div>
                           ) : (null)}
-
                         </Card.Content>
                         <Card.Content>
                           <Grid columns='equal' centered stackable>
-
                             <Grid.Row style={styles.quantityRow}>
                               <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto', textAlign: 'center' }}>
                                 <Button.Group fluid icon basic size='large'>
@@ -216,7 +215,6 @@ export default class FoodShowPage extends PureComponent {
                                 </Button.Group>
                               </Grid.Column>
                             </Grid.Row>
-
                             <Grid.Row style={styles.shoppingButtonRow}>
                               <Grid.Column largeScreen={6} computer={8} mobile={16} tablet={16} style={{ margin: 'auto' }}>
                                 <Button
@@ -238,10 +236,23 @@ export default class FoodShowPage extends PureComponent {
                           </Grid>
                         </Card.Content>
                         <Card.Content extra style={styles.cardFooter}>
-                          <span>
-                            <Icon name='dollar' />
-                            {food.price}
-                          </span>
+                          <div>
+                            {parseFloat(food.sale_price) !== 0 ? (
+                              <>
+                                <span className='cross'>
+                                  <Icon name='dollar' />{food.price}
+                                </span>
+                                <span>
+                                  <Icon name='dollar' />
+                                  {food.sale_price}
+                                </span>
+                              </>
+                            ) : (
+                                <>
+                                  <Icon name='dollar' />{food.price}
+                                </>
+                              )}
+                          </div>
                           <span style={styles.ratingContainer}>
                             <RatingsController
                               currentRate={food.ratings}

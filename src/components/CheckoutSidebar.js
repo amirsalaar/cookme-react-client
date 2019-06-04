@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, Icon, List } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
+import isOnSale from '../modules/isOnSale';
 
 const styles = {
   sidebarCardHeader: { fontSize: '1.5em', marginBottom: '1em' },
@@ -21,7 +22,8 @@ class CheckoutSidebar extends Component {
     let subTotal = 0;
     if (this.state.orders.length > 0) {
       this.state.orders.forEach(cartItem => {
-        subTotal += cartItem.food.price * cartItem.quantity;
+        let price = isOnSale(cartItem.food.price, cartItem.food.sale_price)
+        subTotal += price * cartItem.quantity;
       });
       return this.setState({ subTotal: subTotal.toFixed(2), tax: (subTotal * 0.12).toFixed(2) })
     };
@@ -66,7 +68,9 @@ class CheckoutSidebar extends Component {
                     </List.Content>
                     <List.Content style={styles.itemName}>
                       {cartItem.food.name}
-                      <span style={{ marginLeft: 'auto', padding: 0 }}><Icon name='dollar' size='small' />{cartItem.food.price * cartItem.quantity}
+                      <span style={{ marginLeft: 'auto', padding: 0 }}>
+                        <Icon name='dollar' size='small' />
+                        {isOnSale(cartItem.food.price, cartItem.food.sale_price) * cartItem.quantity}
                       </span>
                     </List.Content>
                   </List.Item>
