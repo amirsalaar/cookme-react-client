@@ -50,7 +50,9 @@ class CheckoutForm extends Component {
     if (response.status === 200) {
       const res = await Session.destroyCart();
       this.props.onPay();
-    };
+    } else {
+      return 'Oops! Your order didnt go through! Please try again!' 
+    }
   };
 
   render() {

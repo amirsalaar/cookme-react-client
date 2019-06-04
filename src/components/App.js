@@ -63,6 +63,13 @@ class App extends Component {
     this.setState({ currentUser: null })
   };
 
+  destroyCart = () => {
+    this.setState({
+      cartModel: [],
+      cartDetails: [],
+    })
+  };
+
   addToCart = (params) => {
     this.setState({ cartModel: [...this.state.cartModel, params] });
     this.fetchFoods()
@@ -124,6 +131,7 @@ class App extends Component {
                 {...routeProps}
                 currentUser={this.state.currentUser}
                 cartDetails={cartDetails}
+                onDestroyCart={this.destroyCart}
               />
             )} />
             <Route component={CheckoutSidebar} />

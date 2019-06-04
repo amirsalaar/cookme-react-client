@@ -68,6 +68,7 @@ export default class CheckoutShowPage extends Component {
   };
 
   showReceipt = () => {
+    this.props.onDestroyCart();
     this.setState({ stage: 'Receipt' })
   };
 
