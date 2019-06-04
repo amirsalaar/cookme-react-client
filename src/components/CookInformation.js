@@ -13,13 +13,7 @@ const styles = {
 
 function CookInformation(props) {
   const { cook, address, calculatedDistance } = props;
-  
-  const handleTableRowClick = (event) => {
-    event.preventDefault();
-    const { currentTarget } = event
-    const id = currentTarget.getAttribute('data-id')
-    console.log(props.history)
-  }
+
   const panes = [
     {
       menuItem: { key: 'location', icon: 'map', content: "Kitchen's Location" },
@@ -83,16 +77,11 @@ function CookInformation(props) {
                       return (
                         <Table.Row key={food.id}>
                           <Table.Cell>
-                            <div
-                              data-id={food.id}
-                              // onClick={event => handleTableRowClick(event)}
+                            <Link
+                              to={`/foods/${food.id}`}
                             >
-                              <Link
-                                to={`/foods/${food.id}`}
-                              >
-                                {food.name}
-                              </Link>
-                            </div>
+                              {food.name}
+                            </Link>
                           </Table.Cell>
                           <Table.Cell textAlign='right'><Icon name='dollar' />{food.price}</Table.Cell>
                         </Table.Row>
@@ -126,4 +115,4 @@ function CookInformation(props) {
   )
 }
 
-export default withRouter(CookInformation)
+export default CookInformation

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input,  Segment, Radio, Form, TextArea, Header } from 'semantic-ui-react';
 import CheckoutSidebar from './CheckoutSidebar';
 import Food from '../api/food';
@@ -31,7 +31,7 @@ const styles = {
   isntructionBox: { minHeight: 30 },
 };
 
-export default class FoodShowPage extends Component {
+export default class FoodShowPage extends PureComponent {
   constructor(props) {
     super(props);
     const { currentLocation } = this.props;
@@ -49,6 +49,12 @@ export default class FoodShowPage extends Component {
   componentDidMount = () => {
     this.fetchFood();
     this.setState({ cartDetails: this.props.cartDetails })
+  };
+
+  componentDidUpdate = (prevProps) => {
+    if(this.props.match.params.id !== prevProps.match.params.id ) {
+      this.fetchFood(this.props.match.params.id);
+    };
   };
 
   fetchFood = () => {
