@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header, Grid, Tab, Card, Icon, Image, Container, Table } from 'semantic-ui-react';
+import { Header, Grid, Tab, Card, Icon, Image, Container, Table, Rating } from 'semantic-ui-react';
 import MapContainer from './MapContainer';
 import { GOOGLE_MAP } from '../config';
 import { Link, Redirect, withRouter } from 'react-router-dom';
@@ -8,7 +8,10 @@ const styles = {
   mapGrid: { width: '100%', height: '30vh' },
   locationAddress: { padding: '1em 0em', fontSize: '1.1em' },
   ditanceResult: { marginLeft: 'auto' },
-  kitchenInfo: { minHeight: '30vh' }
+  kitchenInfo: { minHeight: '30vh' },
+  cookHeader: { display: 'flex', alignItems: 'center' },
+  star: { color: '#fc0' },
+
 }
 
 function CookInformation(props) {
@@ -65,9 +68,17 @@ function CookInformation(props) {
             style={styles.kitchenInfo}
           >
             <Container>
-              <Header as='h2'>
-                <Image circular src={cook.avatar.url} /> {cook.full_name}
-              </Header>
+              <div style={styles.cookHeader}>
+                <span>
+                  <Header as='h2'>
+                    <Image circular src={cook.avatar.url} /> {cook.full_name}
+                  </Header>
+                </span>
+                <span style={{ marginLeft: 'auto' }}>
+                  <span style={{fontSize: '1.3em', marginRight: '0.4em'}}>{cook.average_ratings} / 5</span>
+                  <Icon name='star' style={styles.star} size='big' />
+                </span>
+              </div>
               <Container style={{ padding: '2em' }}>
 
                 <Header as='h4' content='Other Foods' />

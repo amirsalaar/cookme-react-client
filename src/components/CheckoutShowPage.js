@@ -110,7 +110,6 @@ export default class CheckoutShowPage extends Component {
             <Grid
               stackable
               centered
-              verticalAlign='center'
               style={{ paddingTop: '5em' }}
             >
 

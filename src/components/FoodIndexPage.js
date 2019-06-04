@@ -61,15 +61,19 @@ export default class FoodIndexPage extends Component {
         <div style={styles.price}>
           {parseFloat(sale_price) !== 0 ? (
             <>
-            <span className='cross'>
-            <Icon name='dollar' />{price}
-            </span>
-            <span>
-              <Icon name='dollar' />
-              {sale_price}
-            </span>
+              <span className='cross'>
+                <Icon name='dollar' />{price}
+              </span>
+              <span>
+                <Icon name='dollar' />
+                {sale_price}
+              </span>
             </>
-          ) : price}
+          ) : (
+              <>
+                <Icon name='dollar' />{price}
+              </>
+            )}
         </div>
       </>
     );
