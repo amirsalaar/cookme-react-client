@@ -4,12 +4,31 @@ import { Rating } from 'semantic-ui-react';
 export default class RatingsController extends Component {
   constructor(props) {
     super(props);
-    const { currentRate } = this.props;
     this.state = {
-      rating: currentRate,
+      rating: null,
       maxRating: null,
     }
   };
+
+  componentDidMount = () => {
+    this.setState({ rating: this.props.currentRate })
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (this.props.currentRate !== prevProps.currentRate) {
+      this.setState({ rating: this.props.currentRate })
+    }
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.currentRate !== state.rating) {
+      return {
+        rating: props.currentRate,
+      }
+    };
+    return null
+  };
+
 
   handleRate = (e, { rating, maxRating }) => this.setState({ rating, maxRating })
 
