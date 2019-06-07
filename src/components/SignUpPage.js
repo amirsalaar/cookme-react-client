@@ -45,6 +45,7 @@ export default function SignUpPage(props) {
         tablet={11}
         computer={11}
         largeScreen={7}
+        widescreen={6}
         verticalAlign='middle'
       >
         <Container>

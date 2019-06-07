@@ -38,7 +38,16 @@ export default function SignInPage(props) {
   }
   return (
     <Grid className='sign-in' stackable centered verticalAlign='middle'>
-      <Grid.Column stretched textAlign='center' mobile={16} tablet={8} computer={8} largeScreen={5} verticalAlign='middle' >
+      <Grid.Column
+        stretched
+        textAlign='center'
+        mobile={16}
+        tablet={8}
+        computer={7}
+        largeScreen={5}
+        widescreen={4}
+        verticalAlign='middle'
+      >
         <Segment raised>
           <Segment secondary >
             <Form onSubmit={handleSubmit}>
