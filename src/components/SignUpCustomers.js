@@ -42,6 +42,8 @@ export default function SignUpCustomers(props) {
           </Input>
         </Form.Field>
 
+        <Form.Field name='phone_number' label='Phone Number' control={Input} width={7} type='tel' placeholder='+18887775555' pattern="\+[1][0-9]{3}[0-9]{3}[0-9]{4}" size={style.inputSize} required />
+
         <Form.Field name='password' label='Password' control={Input} width={7} type='password' placeholder='Password' size={style.inputSize} required />
 
         <Form.Field name='password_confirmation' label='Password Confirmation' control={Input} width={7} type='password' placeholder='Password Confrimation' size={style.inputSize} required />
