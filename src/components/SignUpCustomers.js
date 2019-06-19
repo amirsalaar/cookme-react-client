@@ -10,15 +10,16 @@ export default function SignUpCustomers(props) {
     event.preventDefault();
     const { currentTarget } = event;
     const formData = new FormData(currentTarget);
-    const signUpParams = {
-      first_name: formData.get('first_name'),
-      last_name: formData.get('last_name'),
-      email: formData.get('email'),
-      role: 2,
-      password: formData.get('password'),
-      password_confirmation: formData.get('password_confirmation'),
-    };
-    User.create(signUpParams).then(res => {
+    formData.append('role',2)
+    // const signUpParams = {
+    //   first_name: formData.get('first_name'),
+    //   last_name: formData.get('last_name'),
+    //   email: formData.get('email'),
+    //   role: 2,
+    //   password: formData.get('password'),
+    //   password_confirmation: formData.get('password_confirmation'),
+    // };
+    User.create(formData).then(res => {
       if (res.id) {
         onSignUp();
       }
