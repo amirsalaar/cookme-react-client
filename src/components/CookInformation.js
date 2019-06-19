@@ -1,8 +1,8 @@
 import React from 'react'
-import { Header, Grid, Tab, Card, Icon, Image, Container, Table, Rating } from 'semantic-ui-react';
+import { Header, Grid, Tab, Card, Icon, Image, Container, Table } from 'semantic-ui-react';
 import MapContainer from './MapContainer';
 import { GOOGLE_MAP } from '../config';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const styles = {
   mapGrid: { width: '100%', height: '30vh' },

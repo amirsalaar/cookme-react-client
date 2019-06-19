@@ -2,11 +2,6 @@ import React from 'react'
 import { Grid, GridRow, } from 'semantic-ui-react';
 import SearchBox from './SearchBox';
 
-const styles = {
-  heroHeader: { fontSize: '4em', textShadow: '2px 2px 1px black', color: '#01D0AF', textAlign: 'center', textTransform: 'uppercase'},
-  girdRow: { marginBottom: '2em' }
-}
-
 export default function HomePage() {
   document.body.className = ('home-page')
   return (

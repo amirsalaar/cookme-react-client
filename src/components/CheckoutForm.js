@@ -48,7 +48,7 @@ class CheckoutForm extends Component {
     );
     const response = await Order.charge(token, this.state.orderID);
     if (response.status === 200) {
-      const res = await Session.destroyCart();
+      await Session.destroyCart();
       this.props.onPay();
     } else {
       return 'Oops! Your order didnt go through! Please try again!' 

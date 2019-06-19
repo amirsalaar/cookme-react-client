@@ -78,8 +78,6 @@ export default class CheckoutShowPage extends Component {
     document.body.classList = '';
     const {
       cartDetails,
-      active,
-      isConfirmed,
       stage,
       orderID,
       currentUser,
