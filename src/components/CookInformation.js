@@ -1,6 +1,6 @@
 import React from 'react'
 import { Header, Grid, Tab, Card, Icon, Image, Container, Table } from 'semantic-ui-react';
-import MapContainer from './MapContainer';
+import MapContainer from './Map/MapContainer';
 import { GOOGLE_MAP } from '../config';
 import { Link } from 'react-router-dom';
 
