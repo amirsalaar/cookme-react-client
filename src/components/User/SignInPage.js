@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Form, Grid, Input, Icon, Button, Segment, Message } from 'semantic-ui-react';
-import Session from '../api/session';
+import Session from '../../api/session';
 
 export default function SignInPage(props) {
   document.body.className = ('sign-in-page')

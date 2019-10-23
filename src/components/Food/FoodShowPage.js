@@ -7,7 +7,7 @@ import getDistance from '../../modules/getDistance';
 import RatingsController from '../RatingsController';
 import FoodIngredients from './FoodIngredients';
 import Footer from '../Footer';
-import CookInformation from '../CookInformation';
+import CookInformation from '../User/CookInformation';
 
 const styles = {
   container: { width: '90%', marginTop: '2em', marginBottom: '2em' },

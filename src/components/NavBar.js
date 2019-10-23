@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { Menu, Segment, Icon, Sticky, Label } from 'semantic-ui-react'
 import logo from '../assets/images/logo.PNG';
 import Session from '../api/session';
-import DashboardMenuItem from './DashboardMenuItem';
+import DashboardMenuItem from './User/DashboardMenuItem';
 
 export class NavBar extends Component {
   state = {
