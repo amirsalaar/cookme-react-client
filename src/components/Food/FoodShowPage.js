@@ -4,7 +4,7 @@ import CheckoutSidebar from '../Checkout/CheckoutSidebar';
 import Food from '../../api/food';
 import Session from '../../api/session';
 import getDistance from '../../modules/getDistance';
-import RatingsController from '../RatingsController';
+import RatingsController from './RatingsController';
 import FoodIngredients from './FoodIngredients';
 import Footer from '../Footer';
 import CookInformation from '../User/CookInformation';
