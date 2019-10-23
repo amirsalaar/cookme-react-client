@@ -3,10 +3,10 @@ import { Grid, Container, Segment, List, Icon, Button, Header, Table, Dimmer, Lo
 import CheckoutForm from './CheckoutForm';
 import { Elements, StripeProvider } from 'react-stripe-elements';
 import { Step } from 'semantic-ui-react';
-import { Order } from '../api/order';
-import Receipt from './Receipt';
-import Footer from './Footer';
-import isOnSale from '../modules/isOnSale';
+import { Order } from '../../api/order';
+import Receipt from '../Receipt';
+import Footer from '../Footer';
+import isOnSale from '../../modules/isOnSale';
 
 const styles = {
   itemsContainer: { width: '60%', marginBottom: '2em', marginTop: '2em' },

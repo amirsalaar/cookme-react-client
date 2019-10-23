@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 import { Form, Input, Icon, Button, Grid } from 'semantic-ui-react';
-import { Order } from '../api/order';
-import Session from '../api/session';
+import { Order } from '../../api/order';
+import Session from '../../api/session';
 
 const styles = {
   cardElement: {

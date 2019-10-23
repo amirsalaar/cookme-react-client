@@ -9,8 +9,8 @@ import SignInPage from './SignInPage';
 import FoodIndexPage from './FoodIndexPage';
 import FoodShowPage from './FoodShowPage';
 import Food from '../api/food';
-import CheckoutShowPage from './CheckoutShowPage';
-import CheckoutSidebar from './CheckoutSidebar';
+import CheckoutShowPage from './Checkout/CheckoutShowPage';
+import CheckoutSidebar from './Checkout/CheckoutSidebar';
 
 
 class App extends Component {

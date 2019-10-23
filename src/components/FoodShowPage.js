@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, Segment, Radio, Form, TextArea, Header } from 'semantic-ui-react';
-import CheckoutSidebar from './CheckoutSidebar';
+import CheckoutSidebar from './Checkout/CheckoutSidebar';
 import Food from '../api/food';
 import Session from '../api/session';
 import getDistance from '../modules/getDistance';
