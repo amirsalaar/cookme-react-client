@@ -1,13 +1,13 @@
 import React, { PureComponent } from 'react';
 import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, Segment, Radio, Form, TextArea, Header } from 'semantic-ui-react';
-import CheckoutSidebar from './Checkout/CheckoutSidebar';
-import Food from '../api/food';
-import Session from '../api/session';
-import getDistance from '../modules/getDistance';
-import RatingsController from './RatingsController';
+import CheckoutSidebar from '../Checkout/CheckoutSidebar';
+import Food from '../../api/food';
+import Session from '../../api/session';
+import getDistance from '../../modules/getDistance';
+import RatingsController from '../RatingsController';
 import FoodIngredients from './FoodIngredients';
-import Footer from './Footer';
-import CookInformation from './CookInformation';
+import Footer from '../Footer';
+import CookInformation from '../CookInformation';
 
 const styles = {
   container: { width: '90%', marginTop: '2em', marginBottom: '2em' },
