@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Grid, Icon, Container, Dimmer, Loader, Label } from 'semantic-ui-react';
 import FoodItem from './FoodItem';
 import Food from '../../api/food';
-import getDistance from '../../modules/getDistance';
+import getDistance from '../../helpers/getDistance';
 import Footer from '../Footer';
 // import { getDistance, convertDistance } from 'geolib';
 

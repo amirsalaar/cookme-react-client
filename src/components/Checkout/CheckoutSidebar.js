@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Button, Icon, List } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
-import isOnSale from '../../modules/isOnSale';
+import isOnSale from '../../helpers/isOnSale';
 
 const styles = {
   sidebarCardHeader: { fontSize: '1.5em', marginBottom: '1em' },

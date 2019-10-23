@@ -3,7 +3,7 @@ import { Grid, Image, Container, Card, Icon, Dimmer, Loader, Button, Input, Segm
 import CheckoutSidebar from '../Checkout/CheckoutSidebar';
 import Food from '../../api/food';
 import Session from '../../api/session';
-import getDistance from '../../modules/getDistance';
+import getDistance from '../../helpers/getDistance';
 import RatingsController from './RatingsController';
 import FoodIngredients from './FoodIngredients';
 import Footer from '../Footer';

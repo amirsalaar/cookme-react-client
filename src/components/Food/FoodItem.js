@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import truncateText from '../../modules/truncateText';
+import truncateText from '../../helpers/truncateText';
 
 const styles = {
   cardBox: { height: '100%' }
