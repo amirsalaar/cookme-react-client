@@ -1,7 +1,7 @@
 import React from 'react'
 import { User } from '../../api/user';
 import { Icon, Button, Form, Input, } from 'semantic-ui-react';
-import { SignUpPagesStyles as style } from '../../styles/SignUpPagesStyle';
+import styles from '../../assets/styles/SignUpPages.module.css'
 
 export default function SignUpCustomers(props) {
   const { onSignUp } = props;
@@ -29,24 +29,24 @@ export default function SignUpCustomers(props) {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group widths='equal'>
-        <Form.Field name='first_name' control={Input} label='First Name' placeholder='First Name' size={style.inputSize} required />
-        <Form.Field name='last_name' control={Input} label='Last Name' placeholder='Last Name' size={style.inputSize} required />
+        <Form.Field name='first_name' control={Input} label='First Name' placeholder='First Name' size={styles.inputSize} required />
+        <Form.Field name='last_name' control={Input} label='Last Name' placeholder='Last Name' size={styles.inputSize} required />
       </Form.Group>
 
       <Form.Group widths='equal'>
         <Form.Field required width={7} >
           <label htmlFor="email">Email Address</label>
-          <Input type='email' name='email' iconPosition='left' placeholder='Email Address' size={style.inputSize} >
+          <Input type='email' name='email' iconPosition='left' placeholder='Email Address' size={styles.inputSize} >
             <Icon name='at' />
             <input />
           </Input>
         </Form.Field>
 
-        <Form.Field name='phone_number' label='Phone Number' control={Input} width={7} type='tel' placeholder='+18887775555' pattern="\+[1][0-9]{3}[0-9]{3}[0-9]{4}" size={style.inputSize} required />
+        <Form.Field name='phone_number' label='Phone Number' control={Input} width={7} type='tel' placeholder='+18887775555' pattern="\+[1][0-9]{3}[0-9]{3}[0-9]{4}" size={styles.inputSize} required />
 
-        <Form.Field name='password' label='Password' control={Input} width={7} type='password' placeholder='Password' size={style.inputSize} required />
+        <Form.Field name='password' label='Password' control={Input} width={7} type='password' placeholder='Password' size={styles.inputSize} required />
 
-        <Form.Field name='password_confirmation' label='Password Confirmation' control={Input} width={7} type='password' placeholder='Password Confrimation' size={style.inputSize} required />
+        <Form.Field name='password_confirmation' label='Password Confirmation' control={Input} width={7} type='password' placeholder='Password Confrimation' size={styles.inputSize} required />
       </Form.Group>
       {/* <div style={{ marginBottom: 10 }}>
         <Label
@@ -69,7 +69,7 @@ export default function SignUpCustomers(props) {
           <input name='user[avatar]' hidden id="upload" type="file" />
         </Label>
       </div> */}
-      <Button color='teal' type='submit' size={style.inputSize} >Sign Up</Button>
+      <Button color='teal' type='submit' size={styles.inputSize} >Sign Up</Button>
     </Form>
   )
 }

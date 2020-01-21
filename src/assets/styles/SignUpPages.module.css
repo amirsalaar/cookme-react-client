@@ -1,0 +1,13 @@
+.inputSize { font-size: 'large'}
+
+.addressLabel {
+  font-size: 0.92857143em;
+  font-weight: 700;
+  display: 'block';
+  margin: 0 0 0.28571429rem 0;
+}
+
+.addressStar {
+  margin: -0.2em 0em 0em .2em;
+  color: '#db2828';
+}
